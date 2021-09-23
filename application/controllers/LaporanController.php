@@ -74,6 +74,7 @@ class LaporanController extends CI_Controller {
         
 		if ($this->form_validation->run()) 
         {
+            $data['new_id'] = $this->setIdLaporan();
             $periode = $this->input->post("periode_bulan");
             $data['periode'] = $this->input->post("periode_tahun");
             $data['laporanPM'] = $this->LaporanModel->get_LaporanPemasukan($periode);
