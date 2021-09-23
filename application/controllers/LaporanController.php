@@ -127,7 +127,10 @@ class LaporanController extends CI_Controller {
         } 
     }
   
-
+    function processDelete($id)
+    {
+         
+    }
 
 
 
