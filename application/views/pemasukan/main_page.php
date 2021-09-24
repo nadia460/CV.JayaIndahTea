@@ -46,12 +46,9 @@
                                 <tr>
                                     <!-- Memanggil Value pada Tabel Users -->
                                     <td><?php echo $record->id_pemasukan;?></td>
-                                    
                                     <td><?php echo $record->kategori_pemasukan;?></td>
-                                    <td><?php echo $record->nama_produk;?><?php echo $record->keterangan;?></td>
-                                    
-                                    <td><?php echo $record->nominal_pemasukan;?></td>
-                                   
+                                    <td><?php echo $record->nama_produk;?><?php echo $record->keterangan;?></td>                                
+                                    <td><?php echo $record->nominal_pemasukan;?></td>                           
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
                                         <a href="<?php echo site_url('PemasukanController/readbyid/'.$record->id_pemasukan) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>

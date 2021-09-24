@@ -78,7 +78,8 @@
                             <th>
                                 <br>
                                 <div>LAPORAN ARUS KAS
-                                    <p><input type="hidden" name='periode' value=" <?php echo $periode; ?>" > Periode <?php echo $periode; ?><br>  
+                                    
+                                    <p><input type="hidden" name='periode' value="<?php echo $periode; ?>" > Periode <?php echo $periode; ?><br>  
                                          
                                     </p>
                                 </div>
@@ -102,7 +103,7 @@
                                 </tr>
                                 <?php foreach ($laporanPM->result() as $record) : ?>
                                 <tr>       
-                                    <td><input type="hidden" name='uraian' value="<?php echo $record->kategori_pemasukan;?>" ><?php echo $record->kategori_pemasukan;?></td>
+                                    <td><?php echo $record->kategori_pemasukan;?></td>
                                     <td><?php echo $record->nominal_pemasukan;?></td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -118,7 +119,7 @@
                                 <?php endforeach; ?>
                                 <tr>
                                     <th>Total</th>
-                                    <th><?php echo $countFinal;?></th>  
+                                    <th><input type="hidden" name='total' value="<?php echo $countFinal;?>" ><?php echo $countFinal;?></th>  
                                 </tr>
                             </tbody>
                         </table> 

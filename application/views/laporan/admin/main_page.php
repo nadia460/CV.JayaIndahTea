@@ -78,7 +78,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Uraian</th>
+                            <th>Periode</th>
                             <th>Petugas Admin</th>
                             <th>Penyetuju</th>     
                             <th>Aksi</th>                                
@@ -86,18 +86,20 @@
                     </thead>
 
                     <tbody>
+                        <?php foreach ($dataLP->result() as $record) : ?>
                         <tr>
                             <!-- Memanggil Value pada Tabel Users -->
-                            <td> LP-210827-001</td>
-                            <td> Laporan Arus Kas Bulanan </td>
-                            <td> Nadia Dwi Puji Lestari</td>
-                            <td> Muhamad Faisal</td>  
+                            <td><?php echo $record->id_laporan;?></td>
+                            <td><?php echo $record->periode;?></td>
+                            <td><?php echo $record->petugas_admin;?></td>
+                            <td><?php echo $record->penyetuju;?></td>  
                             <td class="col-lg-2"> 
                                 <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
                                 <button data-toggle="modal" data-target = "#delete-modal " class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>                    
-                        </tr>                         
+                        </tr>  
+                        <?php endforeach; ?>                       
                     </tbody>
                 </table>
                 

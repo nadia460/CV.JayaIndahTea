@@ -2,8 +2,8 @@
 
 class LaporanModel extends CI_Model {
 
-    function getKas(){
-        return $this->db->get("tb_kas");
+    function get_Laporan(){
+        return $this->db->get("tb_laporan");
     }
     
     function get_LaporanPemasukan($periode){
@@ -69,8 +69,34 @@ class LaporanModel extends CI_Model {
         return $id_laporan;
     }
 
-    function insert_Laporan($dataLP){
+    function insert_DetailLaporan($periode, $id_laporan){
 
-        return $this->db->insert("tb_laporan",$dataLP);
+        $query1 = $this->db
+                            ->select('distinct(kategori_pemasukan)')
+                            ->select_sum('nominal_pemasukan')
+                            ->group_by('kategori_pemasukan')
+                            ->like("created_at",$periode)
+                            ->get('tb_pemasukan')->result();
+        
+        $query2 = $this->db
+                            ->select('distinct(kategori_pengeluaran)')
+                            ->select_sum('nominal_pengeluaran')
+                            ->group_by('kategori_pengeluaran')
+                            ->like("created_at",$periode)
+                            ->get('tb_pengeluaran')->result();
+
+        foreach($query1 as $record1){
+            $query1 = $this->db->set($id_laporan);
+            $this->db->insert('tb_detail_laporan', $record1);
+        }
+        
+        foreach($query2 as $record2){
+            $query2 = $this->db->set($id_laporan);
+            $this->db->insert('tb_detail_laporan', $record2);
+        }
+    }
+
+    function insert_Laporan($dataLP){
+        return $this->db->insert("tb_laporan", $dataLP);
     }
 }

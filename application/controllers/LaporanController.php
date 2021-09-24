@@ -26,7 +26,7 @@ class LaporanController extends CI_Controller {
    
 	function index()
     {
-        $data['dataKas'] = $this->LaporanModel->getKas();
+        $data['dataLP'] = $this->LaporanModel->get_Laporan();
         if ($this->session->user->hak_akses == "Admin"){
             $this->load->view('laporan/admin/main_page', $data);
             $this->load->view('templates/footer');
@@ -34,11 +34,7 @@ class LaporanController extends CI_Controller {
         else{
             $this->load->view('laporan/direktur/main_page', $data);
             $this->load->view('templates/footer');
-        }
-        
-        
-        //$this->load->view('laporan/main_page', $data);
-        //$this->load->view('templates/footer'); 
+        } 
     }
 
     function reportMonth()
@@ -93,28 +89,21 @@ class LaporanController extends CI_Controller {
 
     public function processCreate()
 	{
-            $periode = $this->input->post("periode");
-            $dataLP['uraian'] = $this->LaporanModel->get_LaporanPemasukan($periode);
-
-            $dataLP = array(
-                "id_laporan" => $this->input->post("id_laporan"),
-                "periode" => $this->input->post("periode"),
-                //"uraian" => $this->input->post("uraian"),
-                //"nominal_pemasukan" => $this->input->post("nominal"),
-                "petugas_admin" => $this->session->user->nama_pegawai
-            );  
-            
-            
-            
-			//$data['created_at'] = date('Y-m-d H:i:s');
-            if($this->LaporanModel->insert_Laporan($dataLP)){  
-                //$this->addtoKas();
-                $this->session->set_flashdata('success', 'Data Laporans berhasil ditambahkan');
-                redirect(site_url("LaporanController"));
-            }else{
+        $dataLP = array(
+            "id_laporan" => $this->input->post("id_laporan"),
+            "periode" => $this->input->post("periode"),
                 
-                redirect(site_url("LaporanController/formcreate"));
-            }
+            "total" => $this->input->post("total"),
+            "petugas_admin" => $this->session->user->nama_pegawai
+        );  
+            
+        $id_laporan['id_laporan'] = $this->input->post("id_laporan");
+        $periode = $this->input->post("periode");
+        $this->LaporanModel->insert_Laporan($dataLP);
+        $this->LaporanModel->insert_DetailLaporan($periode, $id_laporan);
+
+        $this->session->set_flashdata('success', 'Data Laporans berhasil ditambahkan');
+        redirect(site_url("LaporanController"));
     }
 
     public function setIdLaporan()
