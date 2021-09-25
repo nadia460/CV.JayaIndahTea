@@ -119,7 +119,9 @@ class LaporanController extends CI_Controller {
   
     function processDelete($id)
     {
-         
+        $this->LaporanModel->delete_Laporan($id);
+        $this->session->set_flashdata("info", "Data Laporan Berhasil Dihapus!");
+        redirect(site_url("LaporanController"));
     }
 
 

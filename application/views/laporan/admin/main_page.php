@@ -95,10 +95,32 @@
                             <td><?php echo $record->penyetuju;?></td>  
                             <td class="col-lg-2"> 
                                 <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
-                                <button data-toggle="modal" data-target = "#delete-modal " class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
-                            </td>                    
-                        </tr>  
+                                <a href="<?php echo site_url('LaporanController/get_download') ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
+                                <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_laporan ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                            <!-- Delete Modal-->
+                            <div class="modal modal-danger fade" id="delete-modal<?php echo $record->id_laporan ;?>">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Hapus</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Anda yakin akan menghapus data?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tidak</button>
+                                            <?php echo form_open(site_url("LaporanController/processdelete/".$record->id_laporan)) ?>
+                                            <button type="submit" class="btn btn-outline">Ya</button>
+                                            <?php echo form_close() ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <!-- End Delete Modal -->
                         <?php endforeach; ?>                       
                     </tbody>
                 </table>
