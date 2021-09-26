@@ -18,14 +18,12 @@
     <section class="content">
         <div class="row">
             <div class="col-lg-12 col-xs-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <a href="<?php echo site_url('PemasukanController/formcreate');?>" class="btn btn-default">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <a href="<?php echo site_url('PemasukanController/formcreate');?>" class="btn btn-default">
                         <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
-                </div>
-                        <div class="box-body">
-
-                        
+                    </div>
+                    <div class="box-body">
 
                         <?php $this->load->view('templates/flash'); ?>     
                         <!-- Tabel Akun Users -->

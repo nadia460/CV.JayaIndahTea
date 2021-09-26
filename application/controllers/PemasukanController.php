@@ -118,7 +118,7 @@ class PemasukanController extends CI_Controller {
         }
     }
 
-    public function formupdate($id){
+    public function formUpdate($id){
         $record = $this->PemasukanModel->get_PemasukanById($id)->row();
         $data['nama_produk'] = $this->ProdukModel->get_NameProduct();
         $data['record'] = $record;
@@ -167,7 +167,7 @@ class PemasukanController extends CI_Controller {
             {  
                 //$this->KasModel->delete_Kas($id);
                 //$this->addtoKas();
-                $this->session->set_flashdata('info', 'Data Pemasukan berhasil diedit');
+                $this->session->set_flashdata('success', 'Data Pemasukan berhasil diedit');
                 redirect(site_url("PemasukanController"));
             }else{
                 redirect(site_url("PemasukanController/formupdate"));

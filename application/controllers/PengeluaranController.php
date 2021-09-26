@@ -53,7 +53,7 @@ class PengeluaranController extends CI_Controller {
 	}
 
    
-    function formcreate()
+    function formCreate()
     {
         $data['new_id'] = $this->setIdPengeluaran();
         $data['jenis'] = $this->KategoriModel->get_KategoriPengeluaran()->result();

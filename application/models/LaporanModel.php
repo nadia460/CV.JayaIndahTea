@@ -96,8 +96,8 @@ class LaporanModel extends CI_Model {
         }
     }
 
-    function insert_Laporan($dataLP){
-        return $this->db->insert("tb_laporan", $dataLP);
+    function insert_Laporan($data){
+        return $this->db->insert("tb_laporan", $data);
     }
 
     function delete_Laporan($id){

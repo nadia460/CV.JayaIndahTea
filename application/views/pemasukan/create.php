@@ -53,7 +53,7 @@
                                 <?php echo form_error('kategori_produk', '<span class="help-block">', '</span>') ?>
                                 </div>
                             </div>
-                        
+                         
                             <hr/>
 
                             <div id="form1">

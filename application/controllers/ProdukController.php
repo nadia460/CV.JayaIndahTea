@@ -60,7 +60,7 @@ class ProdukController extends CI_Controller{
                 "nama_produk" => $this->input->post("nama_produk"),
             );
 
-			$data['created_at'] = date('Y-m-d H:i:s');
+			$dataPD['created_at'] = date('Y-m-d H:i:s');
 
             $config['upload_path'] = './assets/images/products';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -119,7 +119,7 @@ class ProdukController extends CI_Controller{
                 "nama_produk" => $this->input->post("nama_produk"),
             );
 
-			$data['updated_at'] = date('Y-m-d H:i:s');
+			$dataPD['updated_at'] = date('Y-m-d H:i:s');
 
             $config['upload_path'] = './assets/images/products';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';

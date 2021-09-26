@@ -6,31 +6,24 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <B>Daftar Pengeluaran Kas</B> 
-            
+            <B>Daftar Pengeluaran Kas</B>         
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li class="active">Pengeluaran</li>
-        </ol>
-
-        
-        
+        </ol>  
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="row">
             <div class="col-lg-12 col-xs-12">
-                
                 <div class="box">
-                <div class="box-header with-border">
-                    <a href="<?php echo site_url('PengeluaranController/formcreate');?>" class="btn btn-default">
+                    <div class="box-header with-border">
+                        <a href="<?php echo site_url('PengeluaranController/formcreate');?>" class="btn btn-default">
                             <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
-                </div>
-                        <div class="box-body">
-                        
-
+                    </div>
+                    <div class="box-body">
                         <?php $this->load->view('templates/flash'); ?>     
                         <!-- Tabel Akun Users -->
                         <table id="myTable" class="display table-bordered" style="width:100%">

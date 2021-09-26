@@ -118,33 +118,7 @@
                         <i class="fa fa-user"></i> <span>Akun Users</span>
                     </a>
                 </li>
-                <li class="treeview <?php echo ($this->uri->segment(1) == "PemasukanController")? " active": ""; ?>">
-                    
-                    <a href="#">
-                        <i class="fa fa-industry"></i>
-                        <span>Pemasukan Kas</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="<?php echo site_url('PemasukanController'); ?>"><i class="fa fa-circle-o"></i> Penjualan Produk</a></li>
-                    </ul>
-                </li>
-                <li class="treeview <?php echo ($this->uri->segment(1) == "Pengeluaran")? " active": ""; ?>">
-                    
-                    <a href="#">
-                        <i class="fa fa-building"></i>
-                        <span>Pengeluaran Kas</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="<?php echo ($this->uri->segment(2) == "PembelianController")? " active": ""; ?>">
-                            <a href="<?php echo site_url('Pengeluaran/PembelianController'); ?>"><i class="fa fa-circle-o"></i> Pembelian Bahan Baku</a>
-                        </li>
-                        <li class="<?php echo ($this->uri->segment(2) == "OperasionalController")? " active": ""; ?>">
-                            <a href="<?php echo site_url('Pengeluaran/OperasionalController'); ?>"><i class="fa fa-circle-o"></i> Pengeluaran Operasional</a>
-                        </li>
-                    </ul>
-                </li>
+                
 
                 <li class="<?php echo ($this->uri->segment(1) == "LaporanController")? " active": ""; ?>">
                     <a href="<?php echo site_url('LaporanController'); ?>">

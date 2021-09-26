@@ -48,7 +48,7 @@
                                     <?php foreach ($jenis as $record_jenis) : ?>   
                                         <option value="<?php echo $record_jenis->nama_kategori;?>"><?php echo $record_jenis->nama_kategori;?></option>  
                                     <?php endforeach; ?>
-                                    <option value ="Kategori Pengeluaran Lainnya">Kategori Pengeluaran Lainnya</option>
+                                    
                                 </select>
                                 <?php echo form_error('kategori_pengeluaran', '<span class="help-block">', '</span>') ?>
                                 </div>

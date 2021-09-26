@@ -40,14 +40,14 @@ class PemasukanModel extends CI_Model {
         return $id_pemasukan;
     }
     
-    function insert_Pemasukan($dataPM){
+    function insert_Pemasukan($data){
 
-        return $this->db->insert("tb_pemasukan",$dataPM);
+        return $this->db->insert("tb_pemasukan",$data);
     }
 
-    function update_Pemasukan($id,$dataPM){
+    function update_Pemasukan($id,$data){
         $this->db->where("id_pemasukan",$id);
-        return $this->db->update('tb_pemasukan',$dataPM);
+        return $this->db->update('tb_pemasukan',$data);
     }
 
     function delete_Pemasukan($id){
