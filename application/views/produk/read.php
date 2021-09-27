@@ -50,7 +50,7 @@
                         </table>
                     <br>
                     
-                    <a href="<?php echo site_url('ProdukController') ?>" class="btn btn-default float-right">Kembali</a>
+                    <a href="<?php echo site_url('products') ?>" class="btn btn-default float-right">Kembali</a>
                     
                     </div>
                     

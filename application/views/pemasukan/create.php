@@ -48,7 +48,6 @@
                                     <?php foreach ($jenis as $record_jenis) : ?>   
                                         <option value="<?php echo $record_jenis->nama_kategori;?>"><?php echo $record_jenis->nama_kategori;?></option>  
                                     <?php endforeach; ?>
-                                    <option value ="Kategori Pemasukan Lainnya">Kategori Pemasukan Lainnya</option>
                                 </select>
                                 <?php echo form_error('kategori_produk', '<span class="help-block">', '</span>') ?>
                                 </div>
@@ -121,7 +120,7 @@
                         </form>
 
                         <br>
-                        <a href="<?php echo site_url('PemasukanController') ?>" class="btn btn-default float-right">&ensp;Batal&ensp;</a>
+                        <a href="<?php echo site_url('income') ?>" class="btn btn-default float-right">&ensp;Batal&ensp;</a>
                         
                         <script>
                             

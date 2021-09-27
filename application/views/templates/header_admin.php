@@ -96,28 +96,28 @@
         <hr style ="border-top: 1px solid grey;">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="<?php echo ($this->uri->segment(1) == "DashboardController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('DashboardController'); ?>">
+                <li class="<?php echo ($this->uri->segment(1) == "dashboard")? " active": ""; ?>">
+                    <a href="<?php echo site_url('dashboard'); ?>">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "ProdukController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('ProdukController'); ?>">
+                <li class="<?php echo ($this->uri->segment(1) == "products")? " active": ""; ?>">
+                    <a href="<?php echo site_url('products'); ?>">
                         <i class="fa fa-cube"></i> <span>Produk</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "KategoriController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('KategoriController'); ?>">
+                <li class="<?php echo ($this->uri->segment(1) == "category")? " active": ""; ?>">
+                    <a href="<?php echo site_url('category'); ?>">
                         <i class="fa fa-tasks"></i> <span>Ketegori</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "PemasukanController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('PemasukanController'); ?>">
+                <li class="<?php echo ($this->uri->segment(1) == "income")? " active": ""; ?>">
+                    <a href="<?php echo site_url('income'); ?>">
                         <i class="fa fa-industry"></i> <span>Pemasukan Kas</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "PengeluaranController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('PengeluaranController'); ?>">
+                <li class="<?php echo ($this->uri->segment(1) == "expenditure")? " active": ""; ?>">
+                    <a href="<?php echo site_url('expenditure'); ?>">
                         <i class="fa fa-building"></i> <span>Pengeluaran Kas</span>
                     </a>
                 </li>
@@ -125,8 +125,8 @@
                 
                 
 
-                <li class="<?php echo ($this->uri->segment(1) == "LaporanController")? " active": ""; ?>">
-                    <a href="<?php echo site_url('LaporanController'); ?>">
+                <li class="<?php echo ($this->uri->segment(2) == "report")? " active": ""; ?>">
+                    <a href="<?php echo site_url('admin/report'); ?>">
                         <i class="fa fa-book"></i> <span>Laporan</span>
                     </a>
                 </li>

@@ -31,7 +31,7 @@
             <div class="col-lg-12 col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a href="<?php echo site_url('UsersController/formcreate');?>" class="btn btn-default">
+                        <a href="<?php echo site_url('users/formcreate');?>" class="btn btn-default">
                         <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
                     </div>
                     <div class="box-body">   

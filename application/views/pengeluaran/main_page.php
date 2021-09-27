@@ -20,7 +20,7 @@
             <div class="col-lg-12 col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a href="<?php echo site_url('PengeluaranController/formcreate');?>" class="btn btn-default">
+                        <a href="<?php echo site_url('expenditure/formcreate');?>" class="btn btn-default">
                             <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
                     </div>
                     <div class="box-body">
@@ -47,8 +47,8 @@
                                     <td><?php echo $record->nominal_pengeluaran;?></td>
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
-                                        <a href="<?php echo site_url('PengeluaranController/readbyid/'.$record->id_pengeluaran) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="<?php echo site_url('PengeluaranController/formupdate/'.$record->id_pengeluaran) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a href="<?php echo site_url('expenditure/readbyid/'.$record->id_pengeluaran) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="<?php echo site_url('expenditure/formupdate/'.$record->id_pengeluaran) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
                                         
                                         <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_pengeluaran ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                                     </td>

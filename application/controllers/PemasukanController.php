@@ -104,10 +104,10 @@ class PemasukanController extends CI_Controller {
             if($this->PemasukanModel->insert_Pemasukan($dataPM)){  
                 //$this->addtoKas();
                 $this->session->set_flashdata('success', 'Data Pemasukan berhasil ditambahkan');
-                redirect(site_url("PemasukanController"));
+                redirect(site_url("income"));
             }else{
                 
-                redirect(site_url("PemasukanController/formcreate"));
+                redirect(site_url("income/formcreate"));
             }
 		}else{
             $data['new_id'] = $this->setIdPemasukan();
@@ -168,9 +168,9 @@ class PemasukanController extends CI_Controller {
                 //$this->KasModel->delete_Kas($id);
                 //$this->addtoKas();
                 $this->session->set_flashdata('success', 'Data Pemasukan berhasil diedit');
-                redirect(site_url("PemasukanController"));
+                redirect(site_url("income"));
             }else{
-                redirect(site_url("PemasukanController/formupdate"));
+                redirect(site_url("income/formupdate"));
             }
 		}else{
             $record = $this->PemasukanModel->get_PemasukanById($id)->row();
@@ -207,18 +207,18 @@ class PemasukanController extends CI_Controller {
             }
             return $id_pemasukan = $this->PemasukanModel->get_newid($auto_id,'PM-');
         } 
-    }
-  
+    } 
+
+     /** 
+     * Method untuk menyimpan data Pemasukan berdasarkan id dalam bentuk pdf
+     * Menggunakan plugin DOMPDF
+     */
     function get_download_byid($id)
     {
-        $record = $this->PemasukanModel->get_PemasukanById($id)->row();
-		$data['record'] = $record;
-        
-
-        $this->load->library('pdf');
-        
+		$data['record'] = $this->PemasukanModel->get_PemasukanById($id)->row();;
+        $this->load->library('pdf');   
         $html = $this->load->view('pemasukan/generatepdf_byid', $data, true);
-        $this->pdf->createPDF($html, 'Bukti Pembayaran', false);
+        $this->pdf->createPDF($html, 'Tanda Bukti Pembayaran - '.$id, false);
     }
  
     public function addtoKas()
@@ -251,6 +251,6 @@ class PemasukanController extends CI_Controller {
     public function processDelete($id){
         $this->PemasukanModel->delete_Pemasukan($id);
         $this->session->set_flashdata("info", "Data Pemasukan Berhasil Dihapus!");
-        redirect(site_url("PemasukanController"));
+        redirect(site_url("income"));
     }
 }

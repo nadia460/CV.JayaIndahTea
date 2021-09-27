@@ -53,7 +53,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                             <input type="submit" class="btn btn-primary" value="Simpan">
-                            <a href="<?php echo site_url('ProdukController') ?>" class="btn btn-default float-right">Batal</a>
+                            <a href="<?php echo site_url('products') ?>" class="btn btn-default float-right">Batal</a>
                             </div>
                             <!-- /.card-footer -->
                             <?php echo form_close() ?>

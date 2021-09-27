@@ -25,7 +25,7 @@
                         <?php $this->load->view('templates/flash'); ?>   
                         <!-- form start -->
                         <br>
-                        <?php echo form_open_multipart(site_url('KategoriController/processCreate')) ?>
+                        <?php echo form_open_multipart(site_url('category/processcreate')) ?>
                         <form class="form-horizontal" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 
@@ -53,7 +53,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                             <input type="submit" class="btn btn-primary" value="Simpan">
-                            <a href="<?php echo site_url('KategoriController') ?>" class="btn btn-default float-right">Batal</a>
+                            <a href="<?php echo site_url('category') ?>" class="btn btn-default float-right">Batal</a>
                             </div>
                             <!-- /.card-footer -->
                             <?php echo form_close() ?>

@@ -61,9 +61,9 @@ class KategoriController extends CI_Controller {
             $data['id_kategori'] = $this->setIdKategori();
             if($this->KategoriModel->insert_Kategori($data)){  
                 $this->session->set_flashdata('success', 'Data Kategori berhasil ditambahkan');
-                redirect(site_url("KategoriController"));
+                redirect(site_url("category"));
             }else{
-                redirect(site_url("KategoriController/formcreate"));
+                redirect(site_url("category/formcreate"));
             }       
 		}else{
             
@@ -89,10 +89,10 @@ class KategoriController extends CI_Controller {
         {
 			if($id == "K-PK-001"){
                 $this->session->set_flashdata("error", "Maaf data jenis Pembelian Bahan Baku tidak dapat diedit! Silahkan tambah data baru atau edit data lain.");
-                redirect(site_url("KategoriController"));
+                redirect(site_url("category"));
             } elseif ($id == "K-PM-001"){
                 $this->session->set_flashdata("error", "Maaf data jenis Penjualan Produk tidak dapat diedit! Silahkan tambah data baru atau edit data lain.");
-                redirect(site_url("KategoriController"));
+                redirect(site_url("category"));
             }else{
                 //
                 $data = array(
@@ -102,9 +102,9 @@ class KategoriController extends CI_Controller {
                 
                 if($this->KategoriModel->update_Kategori($id,$data)){  
                     $this->session->set_flashdata('success', 'Data Kategori berhasil diedit');
-                    redirect(site_url("KategoriController"));
+                    redirect(site_url("category"));
                 }else{
-                    redirect(site_url("KategoriController/formupdate"));
+                    redirect(site_url("category/formupdate"));
                 }       
             } 
             
@@ -143,14 +143,14 @@ class KategoriController extends CI_Controller {
     public function processDelete($id){
         if($id == "K-PK-001"){
             $this->session->set_flashdata("error", "Maaf data jenis Pembelian Bahan Baku tidak dapat dihapus! Silahkan tambah data baru atau edit data lain.");
-            redirect(site_url("KategoriController"));
+            redirect(site_url("category"));
         } elseif ($id == "K-PM-001"){
             $this->session->set_flashdata("error", "Maaf data jenis Penjualan Produk tidak dapat dihapus! Silahkan tambah data baru atau edit data lain.");
-            redirect(site_url("KategoriController"));
+            redirect(site_url("category"));
         }else{
             $this->KategoriModel->delete_Kategori($id);
             $this->session->set_flashdata("info", "Data Jenis Berhasil Dihapus!");
-            redirect(site_url("KategoriController"));
+            redirect(site_url("category"));
         } 
     }
 }

@@ -70,24 +70,24 @@ class ProdukController extends CI_Controller{
                 //
                 if($this->ProdukModel->insert_Produk($dataPD)){  
                     $this->session->set_flashdata('success', 'Data Produk berhasil ditambahkan');
-                    redirect(site_url("ProdukController"));
+                    redirect(site_url("products"));
                 }else{
-                    redirect(site_url("ProdukController/formcreate"));
+                    redirect(site_url("products/formcreate"));
                 }
             } else {
 
                 if (!$this->upload->do_upload('foto_produk')){
                     $this->session->set_flashdata('error', 'File yang dinputkan tidak sesuai. Masukan file dengan format jpeg, jpg, png atau gif');
-                    redirect(site_url("ProdukController"));
+                    redirect(site_url("products"));
                 } else {
 
                     $upload_data = $this->upload->data();
                     $dataPD['foto_produk'] = base_url("assets/images/products/").$upload_data['file_name'];
                     if($this->ProdukModel->insert_Produk($dataPD)){  
                         $this->session->set_flashdata('success', 'Data Produk berhasil ditambahkan');
-                        redirect(site_url("ProdukController"));
+                        redirect(site_url("products"));
                     }else{
-                        redirect(site_url("ProdukController/formcreate"));
+                        redirect(site_url("products/formcreate"));
                     }
                 }            
             }
@@ -99,7 +99,7 @@ class ProdukController extends CI_Controller{
         }
     }
 
-    function formUpdate($id)
+    public function formUpdate($id)
     {
         $record = $this->ProdukModel->get_ProdukById($id)->row();
 		$data['record'] = $record;
@@ -129,25 +129,25 @@ class ProdukController extends CI_Controller{
             if (empty($_FILES['foto_produk']['name'])) {
                 //
                 if($this->ProdukModel->update_Produk($id,$dataPD)){  
-                    $this->session->set_flashdata('success', 'Data Produk berhasil ditambahkan');
-                    redirect(site_url("ProdukController"));
+                    $this->session->set_flashdata('success', 'Data Produk berhasil diedit');
+                    redirect(site_url("products"));
                 }else{
-                    redirect(site_url("ProdukController/formcreate"));
+                    redirect(site_url("products/formcreate"));
                 }
             } else {
 
                 if (!$this->upload->do_upload('foto_produk')){
                     $this->session->set_flashdata('error', 'File yang dinputkan tidak sesuai. Masukan file dengan format jpeg, jpg, png atau gif');
-                    redirect(site_url("ProdukController"));
+                    redirect(site_url("products"));
                 } else {
 
                     $upload_data = $this->upload->data();
                     $dataPD['foto_produk'] = base_url("assets/images/products/").$upload_data['file_name'];
                     if($this->ProdukModel->update_Produk($id,$dataPD)){  
-                        $this->session->set_flashdata('success', 'Data Produk berhasil ditambahkan');
-                        redirect(site_url("ProdukController"));
+                        $this->session->set_flashdata('success', 'Data Produk berhasil diedit');
+                        redirect(site_url("products"));
                     }else{
-                        redirect(site_url("ProdukController/formcreate"));
+                        redirect(site_url("products/formcreate"));
                     }
                 }            
             }
@@ -181,7 +181,7 @@ class ProdukController extends CI_Controller{
     public function processDelete($id){
         $this->ProdukModel->delete_Produk($id);
         $this->session->set_flashdata("info", "Data Produk Berhasil Dihapus!");
-        redirect(site_url("ProdukController"));
+        redirect(site_url("products"));
     }
 }
 ?>

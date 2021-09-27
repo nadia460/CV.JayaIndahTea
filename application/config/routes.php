@@ -52,3 +52,71 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'LoginController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+/*
+| -------------------------------------------------------------------------
+|                                 Dashboard
+| -------------------------------------------------------------------------
+*/
+$route['dashboard'] = 'DashboardController/index';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Produk
+| -------------------------------------------------------------------------
+*/
+$route['products'] = 'ProdukController/index';
+$route['products/formcreate'] = 'ProdukController/formCreate';
+$route['products/readbyid/(:any)'] = 'ProdukController/readbyid/$1';
+$route['products/formupdate/(:any)'] = 'ProdukController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Kategori
+| -------------------------------------------------------------------------
+*/
+$route['category'] = 'KategoriController/index';
+$route['category/formcreate'] = 'KategoriController/formCreate';
+$route['category/readbyid/(:any)'] = 'KategoriController/readbyid/$1';
+$route['category/formupdate/(:any)'] = 'KategoriController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Pemasukan
+| -------------------------------------------------------------------------
+*/
+$route['income'] = 'PemasukanController/index';
+$route['income/formcreate'] = 'PemasukanController/formCreate';
+$route['income/readbyid/(:any)'] = 'PemasukanController/readbyid/$1';
+$route['income/formupdate/(:any)'] = 'PemasukanController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Pengeluaran
+| -------------------------------------------------------------------------
+*/
+$route['expenditure'] = 'PengeluaranController/index';
+$route['expenditure/formcreate'] = 'PengeluaranController/formCreate';
+$route['expenditure/readbyid/(:any)'] = 'PengeluaranController/readbyid/$1';
+$route['expenditure/formupdate/(:any)'] = 'PengeluaranController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Pegawai
+| -------------------------------------------------------------------------
+*/
+$route['employees'] = 'PegawaiController/index';
+$route['employees/formcreate'] = 'PegawaiController/formCreate';
+$route['employees/readbyid/(:any)'] = 'PegawaiController/readbyid/$1';
+$route['employees/formupdate/(:any)'] = 'PegawaiController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Users
+| -------------------------------------------------------------------------
+*/
+$route['users'] = 'UsersController/index';
+$route['users/formcreate'] = 'UsersController/formCreate';
+$route['users/readbyid/(:any)'] = 'UsersController/readbyid/$1';
+$route['users/formupdate/(:any)'] = 'UsersController/formUpdate/$1';
+/*
+| -------------------------------------------------------------------------
+|                                 Menu Laporan
+| -------------------------------------------------------------------------
+*/
+$route['admin/report'] = 'LaporanController/index';
+$route['director/report'] = 'LaporanController/index';

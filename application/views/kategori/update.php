@@ -47,7 +47,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                             <input type="submit" class="btn btn-primary" value="Simpan">
-                            <a href="<?php echo site_url('KategoriController') ?>" class="btn btn-default float-right">Batal</a>
+                            <a href="<?php echo site_url('category') ?>" class="btn btn-default float-right">Batal</a>
                             </div>
                             <!-- /.card-footer -->
                             <?php echo form_close() ?>

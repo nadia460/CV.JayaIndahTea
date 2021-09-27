@@ -116,7 +116,7 @@
                         </form>
 
                         <br>
-                        <a href="<?php echo site_url('PengeluaranController') ?>" class="btn btn-default float-right">&ensp;Batal&ensp;</a>
+                        <a href="<?php echo site_url('expenditure') ?>" class="btn btn-default float-right">&ensp;Batal&ensp;</a>
                         
                         <script>
                             

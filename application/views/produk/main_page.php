@@ -27,7 +27,7 @@
                 
                 <div class="box">
                 <div class="box-header with-border">
-                    <a href="<?php echo site_url('ProdukController/formCreate');?>" class="btn btn-default">
+                    <a href="<?php echo site_url('products/formcreate');?>" class="btn btn-default">
                             <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
                 </div>
                         <div class="box-body">
@@ -55,8 +55,8 @@
                                         
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
-                                        <a href="<?php echo site_url('ProdukController/readbyid/'.$record->id_produk) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="<?php echo site_url('ProdukController/formupdate/'.$record->id_produk) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a href="<?php echo site_url('products/readbyid/'.$record->id_produk) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="<?php echo site_url('products/formupdate/'.$record->id_produk) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
                                         
                                         <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_produk;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                                     </td>

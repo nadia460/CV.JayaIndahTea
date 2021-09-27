@@ -98,9 +98,9 @@ class PengeluaranController extends CI_Controller {
             if ($this->PengeluaranModel->insert_Pengeluaran($dataPK)){  
                 //$this->addtoKas();
                 $this->session->set_flashdata('success', 'Data Pengeluaran berhasil ditambahkan');
-                redirect(site_url("PengeluaranController"));
+                redirect(site_url("expenditure"));
             }else{
-                redirect(site_url("PengeluaranController/formcreate"));
+                redirect(site_url("expenditure/formcreate"));
             }
 		}else{
             $data['new_id'] = $this->setIdPengeluaran();
@@ -161,9 +161,9 @@ class PengeluaranController extends CI_Controller {
                 //$this->KasModel->delete_Kas($id);
                 //$this->addtoKas();
                 $this->session->set_flashdata('success', 'Data Pengeluaran berhasil diedit');
-                redirect(site_url("PengeluaranController"));
+                redirect(site_url("expenditure"));
             }else{
-                redirect(site_url("PengeluaranController/formupdate"));
+                redirect(site_url("expenditure/formupdate"));
             }
 		}else{
             $record = $this->PengeluaranModel->get_PengeluaranById($id)->row();
@@ -234,6 +234,6 @@ class PengeluaranController extends CI_Controller {
     public function processDelete($id){
         $this->PengeluaranModel->delete_Pengeluaran($id);
         $this->session->set_flashdata("info", "Data Pengeluaran Berhasil Dihapus!");
-        redirect(site_url("PengeluaranController"));
+        redirect(site_url("expenditure"));
     }
 }

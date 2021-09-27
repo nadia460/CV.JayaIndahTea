@@ -32,7 +32,7 @@
                 
                 <div class="box">
                 <div class="box-header with-border">
-                    <a href="<?php echo site_url('KategoriController/formCreate');?>" class="btn btn-default">
+                    <a href="<?php echo site_url('category/formcreate');?>" class="btn btn-default">
                             <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
                 </div>
                         <div class="box-body">
@@ -63,7 +63,7 @@
                             <td> <?php echo $record->id_kategori;?></td>
                             <td> <?php echo $record->nama_kategori;?></td>                              
                             <td class="col-lg-3"> 
-                                <a href="<?php echo site_url('KategoriController/formUpdate/'.$record->id_kategori) ?>"  class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>    
+                                <a href="<?php echo site_url('category/formupdate/'.$record->id_kategori) ?>"  class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>    
                                 <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_kategori ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>                    
                         </tr> 
@@ -116,7 +116,7 @@
                             <td> <?php echo $record2->id_kategori;?></td>
                             <td><?php echo $record2->nama_kategori;?></td>                              
                             <td class="col-lg-3"> 
-                                <a href="<?php echo site_url('KategoriController/formupdate/'.$record2->id_kategori) ?>"  class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>    
+                                <a href="<?php echo site_url('category/formupdate/'.$record2->id_kategori) ?>"  class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>    
                                 <button data-toggle="modal" data-target = "#delete-modal<?php echo $record2->id_kategori ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>                    
                         </tr> 

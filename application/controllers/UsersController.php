@@ -92,7 +92,7 @@ class UsersController extends CI_Controller{
             if($this->UsersModel->get_Email($email))
             {    
                 $this->session->set_flashdata("error", "Email sudah digunakan! Silahkan inputkan email lainnya.");
-                redirect(site_url("UsersController/formcreate")); 
+                redirect(site_url("users/formcreate")); 
             } else {
                 // Cek apakah inputan password dan retype password sama atau beda?
                 if($password == $retypepassword)
@@ -100,7 +100,7 @@ class UsersController extends CI_Controller{
                     // Melakukan pengecekan upload image
                     if (!($this->upload->do_upload('foto_profil') && $this->upload->do_upload('qr_code'))){
                         $this->session->set_flashdata('error', 'File yang dinputkan tidak sesuai. Masukan file dengan format jpeg, jpg, png atau gif.');
-                        redirect(site_url("UsersController/formcreate"));
+                        redirect(site_url("users/formcreate"));
                     } else {
     
                         $upload_data = $this->upload->data();
@@ -109,14 +109,14 @@ class UsersController extends CI_Controller{
 
                         if($this->UsersModel->insert_User($DataUser)){  
                             $this->session->set_flashdata('success', 'Data Akun Users berhasil ditambahkan.');
-                            redirect(site_url("UsersController"));
+                            redirect(site_url("users"));
                         }else{
-                            redirect(site_url("UsersController/formcreate"));
+                            redirect(site_url("users/formcreate"));
                         }
                     }     
                 } else {
                     $this->session->set_flashdata("error", "Password Salah! Terdapat ketidak samaan, periksa kembali.");
-                    redirect(site_url("UsersController/formcreate"));
+                    redirect(site_url("users/formcreate"));
                 }
             }          
 		}else{
@@ -138,25 +138,12 @@ class UsersController extends CI_Controller{
         } 
     }
 
-    /** 
-     * Method untuk menyimpan data Users dalam bentuk pdf
-     * Menggunakan plugin DOMPDF
-     */
-    function get_download()
-    {
-        $this->load->library('pdf');
-        $data['users'] = $this->UsersModel->getUsers();
-        $html = $this->load->view('users/generatepdf', $data, true);
-        
-        $this->pdf->createPDF($html, 'laporan akun', false);
-    }
-
     /** Method untuk hapus data Users berdasarkan id */
     public function processDelete($id)
     {
         $this->UsersModel->delete_Users($id);
         $this->session->set_flashdata('info', 'Data Akun Users berhasil dihapus.');
-        redirect(site_url("UsersController")); 
+        redirect(site_url("users")); 
     }
    
     /** Melepaskan Session Users Login untuk keluar */

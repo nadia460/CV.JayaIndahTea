@@ -58,7 +58,7 @@
                         </table>
                     <br>
                     
-                    <a href="<?php echo site_url('PemasukanController') ?>" class="btn btn-default float-right">Kembali</a>
+                    <a href="<?php echo site_url('income') ?>" class="btn btn-default float-right">Kembali</a>
                     
                     </div>
 
