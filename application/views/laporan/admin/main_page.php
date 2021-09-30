@@ -34,7 +34,7 @@
                 </div>
                 <div class="box-body">
                                      
-                    <form  action="<?php echo site_url('LaporanController/reportMonth') ?>" id="form1" method="POST">
+                    <form  action="<?php echo site_url('admin/report/month') ?>" id="form1" method="POST">
                         <div class="form-group ">
                         <label >Periode Bulan: </label>     
                             <div class="input-group date col-sm-12 <?php echo (form_error('periode_bulan')) ? ' has-error' : ''; ?>" >
@@ -48,7 +48,7 @@
                         </div>&nbsp;
                     </form>
                     
-                    <form  action="<?php echo site_url('LaporanController/reportYear') ?>" method="POST"> 
+                    <form  action="<?php echo site_url('admin/report/year') ?>" method="POST"> 
                         <div class="form-group ">
                         <label >Periode Tahun: </label>
                             <div class="input-group date col-sm-12 <?php echo (form_error('periode_tahun')) ? ' has-error' : ''; ?>" >

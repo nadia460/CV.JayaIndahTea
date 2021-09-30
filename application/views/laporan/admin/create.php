@@ -58,7 +58,7 @@
             <div class="col-lg-12 col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <a href="<?php echo site_url('LaporanController');?>" class="btn btn-default">
+                        <a href="<?php echo site_url('admin/report');?>" class="btn btn-default">
                             <span class="fa fa-home"></span> &nbsp; Kembali 
                         </a> &nbsp;
                         

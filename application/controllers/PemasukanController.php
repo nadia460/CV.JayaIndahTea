@@ -215,6 +215,7 @@ class PemasukanController extends CI_Controller {
      */
     function get_download_byid($id)
     {
+        
 		$data['record'] = $this->PemasukanModel->get_PemasukanById($id)->row();;
         $this->load->library('pdf');   
         $html = $this->load->view('pemasukan/generatepdf_byid', $data, true);

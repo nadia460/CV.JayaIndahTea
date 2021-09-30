@@ -28,6 +28,11 @@ class UsersModel extends CI_Model {
         return $this->db->get("tb_users");
     }
 
+    function get_UsersById($id){
+        $this->db->where("id_users",$id);
+        return $this->db->get("tb_users");
+    }
+
     function get_Email($email){
         $this->db->select('*');
         $this->db->from('tb_users');
@@ -36,6 +41,8 @@ class UsersModel extends CI_Model {
         $result = $query->row();
         return $result;     
     }
+
+    
 
     function get_idmax(){
         $this->db->select_max("id_users");
@@ -52,6 +59,11 @@ class UsersModel extends CI_Model {
 
     function insert_User($data){
         return $this->db->insert("tb_users",$data);
+    }
+
+    function update_Users($id,$data){
+        $this->db->where("id_users",$id);
+        return $this->db->update('tb_users',$data);
     }
 
     /** Mencari users pada db berdasarkan id */

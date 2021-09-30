@@ -99,8 +99,10 @@
         <th>
             <div> 
                 <p> Bandung, <?php echo tanggal() ?></p>
-                <br>
-                <p> <?php echo $this->session->user->nama_pegawai ?><br>
+                <p><br> 
+                <img src="<?php echo $this->session->user->qr_code?>" width="100">
+                <br> 
+                <?php echo $this->session->user->nama_pegawai ?><br>       
                 <?php echo $this->session->user->hak_akses ?></p>
             </div>
         </th>

@@ -15,7 +15,7 @@
     <section class="content-header">
         <h1>
             <B>Laporan</B> 
-            <small>Admin</small>
+            <small>Direktur</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard </a></li>
@@ -28,48 +28,8 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-        <div class="col-lg-3 col-xs-3">
-            <div class="box box-solid box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Buat Laporan</h3>
-                </div>
-                    <div class="box-body">
-                        
-                   
-                    <form  action="<?php echo site_url('LaporanController/reportMonth') ?>" id="form1" method="POST">
-                        <div class="form-group ">
-                        <label >Periode Bulan: </label>
-                            
-                            <div class="input-group date col-sm-12 <?php echo (form_error('periode_bulan')) ? ' has-error' : ''; ?>" >
-                                <input type="text" class="form-control" name='periode_bulan' id="datemonths" placeholder="yyyy-mm"/>
-                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-                                <?php echo form_error('periode_bulan', '<span class="help-block">', '</span>') ?>
-                            </div>
-                        </div>
-                         
-                        <div class="card-footer">
-                            <input type="submit" class="btn btn-default col-sm-12" value="Laporan Arus Kas Bulanan">
-                        </div>&nbsp;
-                    </form>
-                    
-                    <form  action="<?php echo site_url('LaporanController/reportYear') ?>" method="POST"> 
-                        <div class="form-group ">
-                        <label >Periode Tahun: </label>
-                            <div class="input-group date col-sm-12 <?php echo (form_error('periode_tahun')) ? ' has-error' : ''; ?>" >
-                                <input type="text" class="form-control" name='periode_tahun' id="dateyears" placeholder="yyyy"/>
-                                <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-                                <?php echo form_error('periode_tahun', '<span class="help-block">', '</span>') ?>
-                            </div>
-                            
-                        </div>
-                        <div class="card-footer">
-                            <input type="submit" class="btn btn-default col-sm-12" value="Laporan Arus Kas Tahunan">
-                        </div>&nbsp;
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-9 col-xs-9">
+            
+            <div class="col-lg-12 col-xs-12">
                 <div class="box box-solid box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Daftar Laporan</h3>
@@ -82,7 +42,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Uraian</th>
+                <th>Periode</th>
                 <th>Petugas Admin</th>
                 <th>Penyetuju</th>     
                 <th>Aksi</th>                                
@@ -90,20 +50,20 @@
         </thead>
 
         <tbody>
-            
+            <?php foreach ($dataLP->result() as $record) : ?>
             <tr>
                 <!-- Memanggil Value pada Tabel Users -->
-                <td> LP-210827-001</td>
-                <td> Laporan Arus Kas Bulanan </td>
-                <td> Nadia Dwi Puji Lestari</td>
-                <td> Muhamad Faisal</td>  
+                <td><?php echo $record->id_laporan;?></td>
+                <td><?php echo $record->periode;?></td>
+                <td><?php echo $record->petugas_admin;?></td>
+                <td><?php echo $record->penyetuju;?></td> 
                 <td class="col-lg-2"> 
                     <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
                     <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
                     <button data-toggle="modal" data-target = "#delete-modal " class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>                    
             </tr>                      
-            
+            <?php endforeach; ?>  
         </tbody>
 
         

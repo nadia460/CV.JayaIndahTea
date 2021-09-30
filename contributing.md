@@ -73,7 +73,7 @@ Hard way The best way to contribute is to "clone" your fork of CodeIgniter to yo
 5. Checkout the "develop" branch. At this point you are ready to start making changes.
 6. Fix existing bugs on the Issue tracker after taking a look to see nobody else is working on them.
 7. [Commit](https://help.github.com/en/articles/adding-a-file-to-a-repository-using-the-command-line) the files
-8. [Push](https://help.github.com/en/articles/pushing-to-a-remote) your develop branch to your fork
+8. [Push](https://help.github.com/en/articles/pushing-to-a-) your develop branch to your fork
 9. [Send a pull request](https://help.github.com/en/articles/creating-a-pull-request)
 
 The Reactor Engineers will now be alerted about the change and at least one of the team will respond. If your change fails to meet the guidelines it will be bounced, or feedback will be provided to help you improve it.

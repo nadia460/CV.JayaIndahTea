@@ -113,10 +113,15 @@ $route['users'] = 'UsersController/index';
 $route['users/formcreate'] = 'UsersController/formCreate';
 $route['users/readbyid/(:any)'] = 'UsersController/readbyid/$1';
 $route['users/formupdate/(:any)'] = 'UsersController/formUpdate/$1';
+$route['users/formupdate/email/(:num)'] = 'UsersController/formUpdate_Email/$1';
+$route['users/formupdate/pass/(:num)'] = 'UsersController/formUpdate_Pass/$1';
 /*
 | -------------------------------------------------------------------------
 |                                 Menu Laporan
 | -------------------------------------------------------------------------
 */
 $route['admin/report'] = 'LaporanController/index';
+$route['admin/report/month'] = 'LaporanController/reportMonth';
+$route['admin/report/year'] = 'LaporanController/reportYear';
+
 $route['director/report'] = 'LaporanController/index';

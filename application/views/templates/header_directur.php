@@ -118,14 +118,11 @@
                         <i class="fa fa-user"></i> <span>Akun Users</span>
                     </a>
                 </li>
-                
-
-                <li class="<?php echo ($this->uri->segment(1) == "report")? " active": ""; ?>">
+                <li class="<?php echo ($this->uri->segment(2) == "report")? " active": ""; ?>">
                     <a href="<?php echo site_url('director/report'); ?>">
                         <i class="fa fa-book"></i> <span>Laporan</span>
                     </a>
-                </li>
-                
+                </li>              
             </ul>
         </section>
         <!-- /.sidebar -->

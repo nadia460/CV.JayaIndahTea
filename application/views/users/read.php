@@ -6,11 +6,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <B>Detail User</B> 
+            <B>Detail Akun Users</B> 
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active">Pemasukan</li>
+            <li class="active">Akun Users</li>
             <li class="active">Detail</li>
         </ol>
     </section>
@@ -20,32 +20,37 @@
         <div class="row">
             <div class="col-lg-12 col-xs-12">
                 <div class="box">
-                    
-                    <?php echo form_open_multipart(site_url('PemasukanController/Update/'.$record->id_pemasukan)) ?>
-
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
                                 <th width="300px">ID</th>
-                                <td><?php echo ($record->id_pemasukan) ?></td>
+                                <td><?php echo ($record->id_users) ?></td>
                             </tr>
                             <tr>
-                                <th width="300px">Nama Lengkap</th>
-                                <td><?php echo ($record->nama_barang) ?></td>
+                                <th width="300px">Nama Pegawai</th>
+                                <td><?php echo ($record->nama_pegawai) ?></td>
                             </tr>
-
                             <tr>
                                 <th width="300px">Email</th>
-                                <td><?php echo ($record->tujuan) ?></td>
+                                <td><?php echo ($record->email) ?></td>
+                            </tr>
+                            
+                            <tr>
+                                <th width="300px">Foto Profil</th>
+                                <td><img src="<?php echo $record->foto_profil?>" width="90"> </td>
                             </tr>
                             <tr>
-                                <th width="300px">Jabatan</th>
-                                <td><?php echo ($record->berat_barang_pm) ?></td>
+                                <th width="300px">QR Code</th>
+                                <td><img src="<?php echo $record->qr_code?>" width="100"> </td>
+                            </tr>
+                            <tr>
+                                <th width="300px">Hak Akses</th>
+                                <td><?php echo ($record->hak_akses) ?></td>
                             </tr>
                             <tr>
                                 <th width="300px">Dibuat pada</th>
-                                <td><?php echo ($record->nominal_pemasukan) ?></td>
+                                <td><?php echo ($record->created_at) ?></td>
                             </tr>
                             <tr>
                                 <th width="300px">Terakhir diedit</th>
@@ -55,10 +60,10 @@
                         </table>
                     <br>
                     
-                    <a href="<?php echo site_url('pemasukancontroller/list') ?>" class="btn btn-default float-right">Kembali</a>
+                    <a href="<?php echo site_url('users') ?>" class="btn btn-default float-right">Kembali</a>
                     
                     </div>
-                    <?php echo form_close() ?>
+                    
 
                     
                 </div>

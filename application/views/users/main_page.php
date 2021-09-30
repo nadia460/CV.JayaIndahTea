@@ -57,8 +57,8 @@
                                     
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
-                                        <a href="<?php echo site_url('#'.$record->id_users) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="<?php echo site_url('#'.$record->id_users) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <a href="<?php echo site_url('users/readbyid/'.$record->id_users) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a href="<?php echo site_url('users/formupdate/'.$record->id_users) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
                                         <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_users ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                                     </td>
                                 </tr>

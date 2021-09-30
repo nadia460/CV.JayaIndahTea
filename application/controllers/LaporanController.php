@@ -53,7 +53,7 @@ class LaporanController extends CI_Controller {
             $countPM = $this->LaporanModel->get_CountPemasukan($periode);
             $countPK = $this->LaporanModel->get_CountPengeluaran($periode);
             $data['countFinal'] = $countPM - $countPK;
-            $this->load->view('laporan/admin/report', $data);
+            $this->load->view('laporan/admin/create', $data);
             $this->load->view('templates/footer'); 
         } else {
             $data['dataKas'] = $this->LaporanModel->getKas();
@@ -78,7 +78,7 @@ class LaporanController extends CI_Controller {
             $countPM = $this->LaporanModel->get_CountPemasukan($periode);
             $countPK = $this->LaporanModel->get_CountPengeluaran($periode);
             $data['countFinal'] = $countPM - $countPK;
-            $this->load->view('laporan/admin/report', $data);
+            $this->load->view('laporan/admin/create', $data);
             $this->load->view('templates/footer'); 
         } else {
             $data['dataKas'] = $this->LaporanModel->getKas();
@@ -103,7 +103,7 @@ class LaporanController extends CI_Controller {
         $this->LaporanModel->insert_DetailLaporan($periode, $id_laporan);
 
         $this->session->set_flashdata('success', 'Data Laporans berhasil ditambahkan');
-        redirect(site_url("LaporanController"));
+        redirect(site_url("admin/report"));
     }
 
     public function setIdLaporan()
