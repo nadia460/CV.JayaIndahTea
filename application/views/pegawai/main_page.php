@@ -17,11 +17,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <B>Daftar Akun Users </B>    
+            <B>Daftar Pegawai </B>    
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li class="active">Akun Users</li>
+            <li class="active">Pegawai</li>
         </ol>    
     </section>
 
@@ -31,7 +31,7 @@
             <div class="col-lg-12 col-xs-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <a href="<?php echo site_url('users/formcreate');?>" class="btn btn-default">
+                        <a href="<?php echo site_url('employees/formcreate');?>" class="btn btn-default">
                         <span class="fa fa-plus"></span> &nbsp; Tambah </a> &nbsp;    
                     </div>
                     <div class="box-body">   
@@ -42,28 +42,28 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                    
+                                    <th>No Telepon</th>
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($users->result() as $record) : ?>
+                                <?php foreach ($pegawai->result() as $record) : ?>
                                 <tr>
                                     <!-- Memanggil Value pada Tabel Users -->
-                                    <td><?php echo $record->id_users;?></td>
+                                    <td><?php echo $record->id_pegawai;?></td>
                                     <td><?php echo $record->nama_pegawai;?></td>
-                                    <td><?php echo $record->email;?></td>
-                                    
+                                    <td><?php echo $record->no_tlp;?></td>
+                                    <td><?php echo $record->alamat;?></td>
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
-                                        <a href="<?php echo site_url('users/readbyid/'.$record->id_users) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="<?php echo site_url('users/formupdate/'.$record->id_users) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
-                                        <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_users ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
+                                        
+                                        <a href="<?php echo site_url('employees/formupdate/'.$record->id_pegawai) ?>" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-edit"></span></a>
+                                        <button data-toggle="modal" data-target = "#delete-modal<?php echo $record->id_pegawai ;?>" class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                                     </td>
                                 </tr>
                                     <!-- Delete Modal-->
-                                    <div class="modal modal-danger fade" id="delete-modal<?php echo $record->id_users ;?>">
+                                    <div class="modal modal-danger fade" id="delete-modal<?php echo $record->id_pegawai ;?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -76,7 +76,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Tidak</button>
-                                                    <?php echo form_open(site_url("UsersController/processDelete/".$record->id_users)) ?>
+                                                    <?php echo form_open(site_url("PegawaiController/processDelete/".$record->id_pegawai)) ?>
                                                     <button type="submit" class="btn btn-outline">Ya</button>
                                                     <?php echo form_close() ?>
                                                 </div>
@@ -90,8 +90,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama</th>
-                                    <th>Email</th>
-                                   
+                                    <th>No Telepon</th>
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

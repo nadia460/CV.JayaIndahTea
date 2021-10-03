@@ -56,7 +56,7 @@ class LaporanController extends CI_Controller {
             $this->load->view('laporan/admin/create', $data);
             $this->load->view('templates/footer'); 
         } else {
-            $data['dataKas'] = $this->LaporanModel->getKas();
+            $data['dataLP'] = $this->LaporanModel->get_Laporan();
             $this->load->view('laporan/admin/main_page', $data);
             $this->load->view('templates/footer');
         }    
@@ -81,7 +81,7 @@ class LaporanController extends CI_Controller {
             $this->load->view('laporan/admin/create', $data);
             $this->load->view('templates/footer'); 
         } else {
-            $data['dataKas'] = $this->LaporanModel->getKas();
+            $data['dataLP'] = $this->LaporanModel->get_Laporan();
             $this->load->view('laporan/admin/main_page', $data);
             $this->load->view('templates/footer');
         }       
