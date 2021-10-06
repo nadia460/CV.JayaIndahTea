@@ -19,8 +19,9 @@ class LaporanController extends CI_Controller {
                 $this->load->view('templates/header_directur');
             }
         }
+        $this->load->library('pdf');
         $this->load->model("LaporanModel","",TRUE);
-        $this->load->model("KategoriModel","",TRUE);
+        $this->load->model("UsersModel","",TRUE);
     }
 
    
@@ -89,21 +90,85 @@ class LaporanController extends CI_Controller {
 
     public function processCreate()
 	{
-        $dataLP = array(
-            "id_laporan" => $this->input->post("id_laporan"),
-            "periode" => $this->input->post("periode"),
-                
-            "total" => $this->input->post("total"),
-            "petugas_admin" => $this->session->user->nama_pegawai
-        );  
-            
         $id_laporan['id_laporan'] = $this->input->post("id_laporan");
         $periode = $this->input->post("periode");
+
+        $dataLP = array(
+            "id_laporan" => $this->input->post("id_laporan"),
+            "periode" => $this->input->post("periode"),  
+            "total" => $this->input->post("total"),
+            "petugas_admin" => $this->session->user->id_pegawai
+        );  
+            
         $this->LaporanModel->insert_Laporan($dataLP);
         $this->LaporanModel->insert_DetailLaporan($periode, $id_laporan);
 
         $this->session->set_flashdata('success', 'Data Laporans berhasil ditambahkan');
         redirect(site_url("admin/report"));
+    }
+
+    public function readbyid($id){
+        $data['laporan'] = $this->LaporanModel->get_LaporanById($id)->row();
+        $data['laporanPM'] = $this->LaporanModel->get_LaporanPemasukanById($id);
+        $data['laporanPK'] = $this->LaporanModel->get_LaporanPengeluaranById($id);
+        $get_laporan = $this->LaporanModel->get_LaporanById($id)->result();
+        $lp = $this->LaporanModel->get_LaporanById($id)->row();
+
+        if ($this->session->user->hak_akses == "Admin"){
+            
+            if($get_laporan > 0) {
+                if($lp->penyetuju == NULL){
+                foreach ($get_laporan as $record) {
+                        $admin = $record->petugas_admin;
+                    } 
+                    $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                    $this->load->view('laporan/admin/read1', $data);
+                    $this->load->view('templates/footer');
+                } else {
+                    foreach ($get_laporan as $record) {
+                        $admin = $record->petugas_admin;
+                        $direktur = $record->penyetuju;
+                    } 
+                    $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                    $data['direktur'] = $this->UsersModel->get_UsersPegawai($direktur)->row();
+                    $this->load->view('laporan/admin/read2', $data);
+                    $this->load->view('templates/footer');
+                }
+                    
+            }  
+        }
+        else{
+            if($get_laporan > 0) {
+                if($lp->penyetuju == NULL){
+                foreach ($get_laporan as $record) {
+                        $admin = $record->petugas_admin;
+                    } 
+                    $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                    $this->load->view('laporan/direktur/read1', $data);
+                    $this->load->view('templates/footer');
+                } else {
+                    foreach ($get_laporan as $record) {
+                        $admin = $record->petugas_admin;
+                        $direktur = $record->penyetuju;
+                    } 
+                    $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                    $data['direktur'] = $this->UsersModel->get_UsersPegawai($direktur)->row();
+                    $this->load->view('laporan/direktur/read2', $data);
+                    $this->load->view('templates/footer');
+                }
+                    
+            } 
+        }
+         
+    }
+
+    public function processAcc($id)
+	{      
+        $data['penyetuju'] = $this->session->user->id_pegawai;
+        $this->LaporanModel->update_Laporan($id, $data);
+
+        $this->session->set_flashdata('success', 'Data Laporans berhasil disetujui');
+        redirect(site_url('director/report'));
     }
 
     public function setIdLaporan()
@@ -124,22 +189,38 @@ class LaporanController extends CI_Controller {
         redirect(site_url("LaporanController"));
     }
 
-
-
-    
     function readbyid_admin()
     {
         $this->load->view('laporan/admin/read_report');
         $this->load->view('templates/footer'); 
     }
 
-    function get_download()
+    function get_download($id)
     {
-        $this->load->library('pdf');
-        //$data['users'] = $this->UsersModel->getUsers();
-        $html = $this->load->view('laporan/generatepdf', [], true);
-        $this->pdf->createPDF($html, 'laporan akun', false);
-    }
+        $data['laporan'] = $this->LaporanModel->get_LaporanById($id)->row();
+        $data['laporanPM'] = $this->LaporanModel->get_LaporanPemasukanById($id);
+        $data['laporanPK'] = $this->LaporanModel->get_LaporanPengeluaranById($id);
 
-    
+        $get_laporan = $this->LaporanModel->get_LaporanById($id)->result();
+        $lp = $this->LaporanModel->get_LaporanById($id)->row();
+        if($get_laporan > 0) {
+            if($lp->penyetuju == NULL){
+               foreach ($get_laporan as $record) {
+                    $admin = $record->petugas_admin;
+                } 
+                $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                $html = $this->load->view('laporan/generatepdf1', $data, true);
+                $this->pdf->createPDF($html, 'Laporan Arus Kas - '.$id, false);
+            } else {
+                foreach ($get_laporan as $record) {
+                    $admin = $record->petugas_admin;
+                    $direktur = $record->penyetuju;
+                } 
+                $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
+                $data['direktur'] = $this->UsersModel->get_UsersPegawai($direktur)->row();
+                $html = $this->load->view('laporan/generatepdf2', $data, true);
+                $this->pdf->createPDF($html, 'Laporan Arus Kas - '.$id, false);
+            }       
+        }        
+    }  
 }

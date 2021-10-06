@@ -58,8 +58,8 @@
                 <td><?php echo $record->petugas_admin;?></td>
                 <td><?php echo $record->penyetuju;?></td> 
                 <td class="col-lg-2"> 
-                    <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
-                    <a href="<?php echo site_url('LaporanController/readbyid_admin') ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
+                    <a href="<?php echo site_url('direktur/report/read/'. $record->id_laporan) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
+                    <a href="<?php echo site_url('LaporanController/get_download/'. $record->id_laporan) ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      
                     <button data-toggle="modal" data-target = "#delete-modal " class="btn btn-danger btn-sm delete_record"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>                    
             </tr>                      

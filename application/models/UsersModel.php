@@ -32,6 +32,11 @@ class UsersModel extends CI_Model {
         $this->db->where("id_users",$id);
         return $this->db->get("tb_users");
     }
+    
+    function get_UsersPegawai($id){
+        $this->db->where("id_pegawai",$id);
+        return $this->db->get("tb_users");
+    }
 
     function get_Email($email){
         $this->db->select('*');

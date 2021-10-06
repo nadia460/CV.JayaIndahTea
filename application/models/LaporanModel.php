@@ -41,6 +41,23 @@ class LaporanModel extends CI_Model {
         $query = $this->db->get();       
         return $query->row()->nominal_pengeluaran;
     }
+
+    function get_LaporanById($id){
+        $this->db->where("id_laporan",$id);;
+        return $this->db->get("tb_laporan");
+    }
+
+    function get_LaporanPemasukanById($id){
+        $this->db->where("id_laporan",$id);
+        $this->db->where("kategori_pengeluaran", NULL);
+        return $this->db->get("tb_detail_laporan");
+    }
+
+    function get_LaporanPengeluaranById($id){
+        $this->db->where("id_laporan",$id);
+        $this->db->where("kategori_pemasukan", NULL);
+        return $this->db->get("tb_detail_laporan");
+    }
     
     function get_idmax(){
         $date=date('ymd'); 
@@ -98,6 +115,11 @@ class LaporanModel extends CI_Model {
 
     function insert_Laporan($data){
         return $this->db->insert("tb_laporan", $data);
+    }
+
+    function update_Laporan($id,$data){
+        $this->db->where("id_laporan",$id);
+        return $this->db->update('tb_laporan',$data);
     }
 
     function delete_Laporan($id){

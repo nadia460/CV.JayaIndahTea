@@ -123,5 +123,7 @@ $route['users/formupdate/pass/(:num)'] = 'UsersController/formUpdate_Pass/$1';
 $route['admin/report'] = 'LaporanController/index';
 $route['admin/report/month'] = 'LaporanController/reportMonth';
 $route['admin/report/year'] = 'LaporanController/reportYear';
+$route['admin/report/read/(:any)'] = 'LaporanController/readbyid/$1';
 
 $route['director/report'] = 'LaporanController/index';
+$route['direktur/report/read/(:any)'] = 'LaporanController/readbyid/$1';
