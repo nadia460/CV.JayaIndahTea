@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2021 at 01:40 PM
+-- Generation Time: Oct 08, 2021 at 09:24 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -24,24 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_detail_pembelian`
+-- Table structure for table `tb_detail_laporan`
 --
 
-CREATE TABLE `tb_detail_pembelian` (
-  `id_pengeluaran` varchar(50) NOT NULL,
-  `nama_barang` varchar(50) NOT NULL,
-  `asal_kirim` varchar(50) NOT NULL,
-  `berat` bigint(20) NOT NULL,
-  `harga_per_kg` int(11) NOT NULL
+CREATE TABLE `tb_detail_laporan` (
+  `id_laporan` varchar(14) DEFAULT NULL,
+  `kategori_pemasukan` varchar(50) DEFAULT NULL,
+  `kategori_pengeluaran` varchar(50) DEFAULT NULL,
+  `nominal_pemasukan` bigint(20) DEFAULT NULL,
+  `nominal_pengeluaran` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tb_detail_pembelian`
+-- Dumping data for table `tb_detail_laporan`
 --
 
-INSERT INTO `tb_detail_pembelian` (`id_pengeluaran`, `nama_barang`, `asal_kirim`, `berat`, `harga_per_kg`) VALUES
-('PK-210909-001', 'PEKO', 'CV. One', 90, 15000),
-('PK-210915-001', 'PEKO', 'CV. One', 90, 1000);
+INSERT INTO `tb_detail_laporan` (`id_laporan`, `kategori_pemasukan`, `kategori_pengeluaran`, `nominal_pemasukan`, `nominal_pengeluaran`) VALUES
+('LP-211003-001', 'Penanaman Modal', NULL, 1000000, NULL),
+('LP-211003-001', 'Penjualan Produk', NULL, 21930000, NULL),
+('LP-211003-001', NULL, 'Pembelian Bahan Baku', NULL, 1350000),
+('LP-211006-001', 'Penanaman Modal', NULL, 1000000, NULL),
+('LP-211006-001', 'Penjualan Produk', NULL, 21930000, NULL),
+('LP-211006-001', NULL, 'Biaya Telepon', NULL, 300000),
+('LP-211006-001', NULL, 'Pembelian Bahan Baku', NULL, 1350000);
 
 -- --------------------------------------------------------
 
@@ -66,7 +71,7 @@ CREATE TABLE `tb_kas` (
 --
 
 CREATE TABLE `tb_kategori_pemasukan` (
-  `id_kategori` varchar(50) NOT NULL,
+  `id_kategori` varchar(9) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -85,7 +90,7 @@ INSERT INTO `tb_kategori_pemasukan` (`id_kategori`, `nama_kategori`) VALUES
 --
 
 CREATE TABLE `tb_kategori_pengeluaran` (
-  `id_kategori` varchar(50) NOT NULL,
+  `id_kategori` varchar(9) NOT NULL,
   `nama_kategori` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -109,10 +114,9 @@ INSERT INTO `tb_kategori_pengeluaran` (`id_kategori`, `nama_kategori`) VALUES
 --
 
 CREATE TABLE `tb_laporan` (
-  `id_laporan` varchar(50) DEFAULT NULL,
-  `uraian` varchar(50) DEFAULT NULL,
-  `nominal` bigint(20) DEFAULT NULL,
+  `id_laporan` varchar(14) DEFAULT NULL,
   `periode` varchar(50) DEFAULT NULL,
+  `total` bigint(20) NOT NULL,
   `petugas_admin` varchar(50) DEFAULT NULL,
   `penyetuju` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -121,8 +125,9 @@ CREATE TABLE `tb_laporan` (
 -- Dumping data for table `tb_laporan`
 --
 
-INSERT INTO `tb_laporan` (`id_laporan`, `uraian`, `nominal`, `periode`, `petugas_admin`, `penyetuju`) VALUES
-('LP-210923-001', NULL, NULL, ' 2021-09', 'Nadia Dwi Puji Lestari', NULL);
+INSERT INTO `tb_laporan` (`id_laporan`, `periode`, `total`, `petugas_admin`, `penyetuju`) VALUES
+('LP-211003-001', '2021-09', 21580000, 'PG-001', 'PG-002'),
+('LP-211006-001', '2021', 21280000, 'PG-001', 'PG-002');
 
 -- --------------------------------------------------------
 
@@ -131,11 +136,11 @@ INSERT INTO `tb_laporan` (`id_laporan`, `uraian`, `nominal`, `periode`, `petugas
 --
 
 CREATE TABLE `tb_pegawai` (
-  `id_pegawai` varchar(50) NOT NULL,
+  `id_pegawai` varchar(7) NOT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `jabatan` varchar(50) NOT NULL,
   `alamat` varchar(50) NOT NULL,
-  `no_tlp` bigint(12) NOT NULL,
+  `no_tlp` varchar(12) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -145,8 +150,8 @@ CREATE TABLE `tb_pegawai` (
 --
 
 INSERT INTO `tb_pegawai` (`id_pegawai`, `nama_pegawai`, `jabatan`, `alamat`, `no_tlp`, `created_at`, `updated_at`) VALUES
-('PG001', 'Nadia Dwi Puji Lestari', 'Asisten Administrasi', 'Bandung', 82214567363, '2021-08-28 14:18:30', NULL),
-('PG002', 'Muhamad Faisal', 'Direktur', 'Bandung', 82214567366, '2021-08-28 14:18:30', NULL);
+('PG-001', 'Nadia Dwi Puji Lestari', 'Asisten Administrasi', 'Bandung', '082214567363', '2021-09-25 08:56:18', NULL),
+('PG-002', 'Muhamad Faisal', 'Direktur', 'Bandung', '082214567368', '2021-10-02 12:04:36', '2021-10-02 17:04:36');
 
 -- --------------------------------------------------------
 
@@ -155,7 +160,7 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `nama_pegawai`, `jabatan`, `alamat`, `no
 --
 
 CREATE TABLE `tb_pemasukan` (
-  `id_pemasukan` varchar(50) NOT NULL,
+  `id_pemasukan` varchar(14) NOT NULL,
   `nama_produk` varchar(50) DEFAULT NULL,
   `kategori_pemasukan` varchar(50) NOT NULL,
   `tujuan_kirim` varchar(50) DEFAULT NULL,
@@ -184,7 +189,7 @@ INSERT INTO `tb_pemasukan` (`id_pemasukan`, `nama_produk`, `kategori_pemasukan`,
 --
 
 CREATE TABLE `tb_pengeluaran` (
-  `id_pengeluaran` varchar(50) NOT NULL,
+  `id_pengeluaran` varchar(14) NOT NULL,
   `kategori_pengeluaran` varchar(50) NOT NULL,
   `nama_barang` varchar(50) DEFAULT NULL,
   `asal_kirim` varchar(50) DEFAULT NULL,
@@ -202,7 +207,8 @@ CREATE TABLE `tb_pengeluaran` (
 --
 
 INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `kategori_pengeluaran`, `nama_barang`, `asal_kirim`, `berat`, `harga_per_kg`, `nominal_pengeluaran`, `keterangan`, `nama_pegawai`, `created_at`, `updated_at`) VALUES
-('PK-210922-001', 'Pembelian Bahan Baku', 'PEKO', 'CV. One', 90, 15000, 1350000, NULL, 'Nadia Dwi Puji Lestari', '2021-09-22 03:55:39', NULL);
+('PK-210922-001', 'Pembelian Bahan Baku', 'PEKO', 'CV. One', 90, 15000, 1350000, NULL, 'Nadia Dwi Puji Lestari', '2021-09-22 03:55:39', NULL),
+('PK-210924-001', 'Biaya Telepon', NULL, NULL, NULL, NULL, 300000, 'Pulsa 300 ribu', 'Nadia Dwi Puji Lestari', '2021-08-24 03:42:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +217,7 @@ INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `kategori_pengeluaran`, `nama_ba
 --
 
 CREATE TABLE `tb_produk` (
-  `id_produk` varchar(50) NOT NULL,
+  `id_produk` varchar(7) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
   `foto_produk` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -230,7 +236,7 @@ INSERT INTO `tb_produk` (`id_produk`, `nama_produk`, `foto_produk`, `created_at`
 ('PD-005', 'Peko Super 2', 'http://localhost/CV.JayaIndahTea/assets/images/products/Peko_Super_2.jpg', '2021-08-25 09:31:16', '2021-09-10 09:01:21'),
 ('PD-006', 'BT', 'http://localhost/CV.JayaIndahTea/assets/images/products/BT.jpg', '2021-08-25 09:31:16', '2021-09-10 09:01:32'),
 ('PD-007', 'Paning', 'http://localhost/CV.JayaIndahTea/assets/images/products/Paning.jpg', '2021-08-25 09:31:16', '2021-09-10 09:01:41'),
-('PD-008', 'Dust', 'http://localhost/CV.JayaIndahTea/assets/images/products/Dust,_Puder1.jpg', '2021-08-25 09:31:16', '2021-09-10 09:01:51');
+('PD-008', 'Dust', 'http://localhost/CV.JayaIndahTea/assets/images/products/Dust,_Puder1.jpg', '2021-08-25 09:31:16', '2021-09-27 04:45:50');
 
 -- --------------------------------------------------------
 
@@ -240,24 +246,24 @@ INSERT INTO `tb_produk` (`id_produk`, `nama_produk`, `foto_produk`, `created_at`
 
 CREATE TABLE `tb_users` (
   `id_users` int(11) NOT NULL,
-  `id_pegawai` varchar(10) NOT NULL,
+  `id_pegawai` varchar(7) DEFAULT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `hak_akses` varchar(50) NOT NULL,
-  `pass_foto` text NOT NULL,
-  `qr_code_ttd` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `foto_profil` text NOT NULL,
+  `qr_code` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`id_users`, `id_pegawai`, `nama_pegawai`, `email`, `password`, `hak_akses`, `pass_foto`, `qr_code_ttd`, `created_at`, `updated_at`) VALUES
-(1, 'PG001', 'Nadia Dwi Puji Lestari', 'nadhia430@gmail.com', 'njonghyun', 'Admin', '', '', '2021-08-28 14:15:04', '2021-07-19 06:20:00'),
-(2, 'PG002', 'Muhamad Faisal', 'faisal123@gmail.com', 'faisal123', 'Direktur', '', '', '2021-08-28 14:18:57', '2021-07-22 05:55:58');
+INSERT INTO `tb_users` (`id_users`, `id_pegawai`, `nama_pegawai`, `email`, `password`, `hak_akses`, `foto_profil`, `qr_code`, `created_at`, `updated_at`) VALUES
+(1, 'PG-002', 'Muhamad Faisal', 'faisal123@gmail.com', 'faisal123', 'Direktur', 'http://localhost/CV.JayaIndahTea/assets/images/users/Muhamad_Faisal.jpg', 'http://localhost/CV.JayaIndahTea/assets/images/users/QR_Code_Faisal.png', '2021-09-25 07:28:14', '2021-09-30 14:53:18'),
+(2, 'PG-001', 'Nadia Dwi Puji Lestari', 'nadhia430@gmail.com', 'njonghyun', 'Admin', 'http://localhost/CV.JayaIndahTea/assets/images/users/Nadia_Dwi_Puji_Lestari_.jpg', 'http://localhost/CV.JayaIndahTea/assets/images/users/QR_Code_Nadia.png', '2021-09-29 08:13:48', '2021-09-30 11:56:42');
 
 --
 -- Indexes for dumped tables
@@ -299,8 +305,8 @@ ALTER TABLE `tb_produk`
 --
 ALTER TABLE `tb_users`
   ADD PRIMARY KEY (`id_users`),
-  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`),
-  ADD KEY `email` (`email`);
+  ADD KEY `email` (`email`),
+  ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -316,7 +322,7 @@ ALTER TABLE `tb_kas`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
