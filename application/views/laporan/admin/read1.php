@@ -93,16 +93,22 @@
                             <tbody>
                                 <tr>
                                     <th>ARUS KAS DARI AKTIVITAS OPERASI</th>
-                                    <th> NOMINAL </th>
+                                    <th>DEBET</th>
+                                    <th>KREDIT</th>
+                                    <th>SALDO</th>
                                 </tr>
                                 <tr>
                                     <th>Pemasukan Kas (+)</th>
                                     <td> </td>   
                                 </tr>
-                                <?php foreach ($laporanPM->result() as $record) : ?>
+                                <?php
+                                $saldo=0;
+                                foreach ($laporanPM->result() as $record) : ?>
                                 <tr>       
                                     <td><?php echo $record->kategori_pemasukan;?></td>
-                                    <td><?php echo $record->nominal_pemasukan;?></td>
+                                    <td><?php echo $record->nominal_pemasukan; $saldo=$saldo+$record->nominal_pemasukan;?></td>
+                                    <td></td>
+                                    <td><?php echo $saldo;?></td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
@@ -112,7 +118,9 @@
                                 <?php foreach ($laporanPK->result() as $record2) : ?>
                                 <tr>       
                                     <td><?php echo $record2->kategori_pengeluaran;?></td>
-                                    <td><?php echo $record2->nominal_pengeluaran;?></td>
+                                    <td></td>
+                                    <td><?php echo $record2->nominal_pengeluaran;$saldo=$saldo-$record->nominal_pemasukan;?></td>
+                                    <td><?php echo $saldo;?></td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
