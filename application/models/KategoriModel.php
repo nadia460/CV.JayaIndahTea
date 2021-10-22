@@ -37,14 +37,7 @@ class KategoriModel extends CI_Model {
         }  
         return $query;    
     }
-    function insert_Kategori($data){
-        if($this->input->post("kategori")=="Pemasukan Kas"){
-            $query = $this->db->insert("tb_kategori_pemasukan",$data);       
-        }else{
-            $query = $this->db->insert("tb_kategori_pengeluaran",$data);
-        }
-        return $query;  
-    }
+    
    
     function get_newid($auto_id, $prefix){
 
@@ -61,6 +54,15 @@ class KategoriModel extends CI_Model {
             $id_produk = $prefix .$tambah;
         }
         return $id_produk;
+    }
+    
+    function insert_Kategori($data){
+        if($this->input->post("kategori")=="Pemasukan Kas"){
+            $query = $this->db->insert("tb_kategori_pemasukan",$data);       
+        }else{
+            $query = $this->db->insert("tb_kategori_pengeluaran",$data);
+        }
+        return $query;  
     }
 
     function update_Kategori($id,$data){

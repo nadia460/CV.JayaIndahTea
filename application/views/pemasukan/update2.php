@@ -68,14 +68,13 @@
                                 </div>
                                 <!-- /.card-footer -->        
                             </div>
-
-                            
                         </form>
 
                         <br>
                         <a href="<?php echo site_url('income') ?>" class="btn btn-default float-right">&ensp;Batal&ensp;</a>
                         
-                            <!-- /.card-footer -->
+                        <!-- /.card-footer -->
+                        
                         
                     </div>
                 </div>

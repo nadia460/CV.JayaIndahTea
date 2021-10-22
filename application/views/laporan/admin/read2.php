@@ -93,31 +93,45 @@
                             <tbody>
                                 <tr>
                                     <th>ARUS KAS DARI AKTIVITAS OPERASI</th>
-                                    <th> NOMINAL </th>
+                                    <th>DEBIT</th>
+                                    <th>KREDIT</th>
+                                    <th>SALDO</th>
                                 </tr>
                                 <tr>
                                     <th>Pemasukan Kas (+)</th>
-                                    <td> </td>   
+                                    <td> </td>
+                                    <td>  </td>
+                                    <td>  </td>   
                                 </tr>
-                                <?php foreach ($laporanPM->result() as $record) : ?>
+                                <?php $saldo=0;
+                                foreach ($laporanPM->result() as $record) : ?>
                                 <tr>       
                                     <td><?php echo $record->kategori_pemasukan;?></td>
-                                    <td><?php echo $record->nominal_pemasukan;?></td>
+                                    <td><?php echo number_format($record->nominal_pemasukan, 0, ".", "."); $saldo=$saldo+$record->nominal_pemasukan;?></td>
+                                    <td></td>
+                                    <td><?php echo number_format($saldo, 0, ".", ".")?></td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
                                     <th>Pengeluaran Kas (-)</th>
-                                    <td>  </td>     
+                                    <td>  </td> 
+                                    <td>  </td>
+                                    <td>  </td>    
                                 </tr>
-                                <?php foreach ($laporanPK->result() as $record2) : ?>
+                                <?php  
+                                    foreach ($laporanPK->result() as $record2) : ?>
                                 <tr>       
                                     <td><?php echo $record2->kategori_pengeluaran;?></td>
-                                    <td><?php echo $record2->nominal_pengeluaran;?></td>
+                                    <td></td>
+                                    <td><?php echo number_format($record2->nominal_pengeluaran, 0, ".", "."); $saldo=$saldo-$record2->nominal_pengeluaran;?></td>
+                                    <td><?php echo number_format($saldo, 0, ".", ".")?></td>
                                 </tr>
                                 <?php endforeach; ?>
                                 <tr>
                                     <th>Total</th>
-                                    <th><input type="hidden" name='total' value="<?php echo $laporan->total;?>" ><?php echo $laporan->total;?></th>  
+                                    <td>  </td>
+                                    <td>  </td>
+                                    <th><?php echo "Rp. ".number_format($laporan->total, 0, ".", ".")?></th>  
                                 </tr>
                             </tbody>
                         </table><br>

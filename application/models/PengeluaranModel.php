@@ -10,18 +10,11 @@ class PengeluaranModel extends CI_Model {
         return $this->db->insert("tb_pengeluaran",$data);
     }
 
-    function insert_Detail($data){
-        return $this->db->insert("tb_detail_pembelian",$data);
-    }
+
     
     function get_PengeluaranById($id){
         $this->db->where("id_pengeluaran",$id);
         return $this->db->get("tb_pengeluaran");
-    }
-    
-    function get_DetailById($id){
-        $this->db->where("id_pengeluaran",$id);
-        return $this->db->get("tb_detail_pembelian");
     }
 
     function get_idmax(){
@@ -56,21 +49,10 @@ class PengeluaranModel extends CI_Model {
         return $this->db->update('tb_pengeluaran',$data);
     }
 
-    function update_Detail($id, $data){
-        $this->db->where("id_pengeluaran",$id);
-        return $this->db->update('tb_detail_pembelian',$data);
-    }
-
-    function delete_Detail($id){
-        $this->db->where('id_pengeluaran',$id);
-        return $this->db->delete('tb_detail_pembelian');
-    }
-
     function delete_Pengeluaran($id){
+
         $this->db->where('id_pengeluaran',$id);
-        $query = $this->db->delete('tb_kas');
-        $this->db->where('id_pengeluaran',$id);
-        return $this->db->delete('tb_pengeluaran');
+        $this->db->delete('tb_pengeluaran');
     }
 
     public function count_Pengeluaran(){

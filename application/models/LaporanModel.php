@@ -47,13 +47,13 @@ class LaporanModel extends CI_Model {
         return $this->db->get("tb_laporan");
     }
 
-    function get_LaporanPemasukanById($id){
+    function get_Detail_LaporanPemasukan($id){
         $this->db->where("id_laporan",$id);
         $this->db->where("kategori_pengeluaran", NULL);
         return $this->db->get("tb_detail_laporan");
     }
 
-    function get_LaporanPengeluaranById($id){
+    function get_Detail_LaporanPengeluaran($id){
         $this->db->where("id_laporan",$id);
         $this->db->where("kategori_pemasukan", NULL);
         return $this->db->get("tb_detail_laporan");
@@ -124,8 +124,8 @@ class LaporanModel extends CI_Model {
 
     function delete_Laporan($id){
         $this->db->where('id_laporan',$id);
-        $query = $this->db->delete('tb_detail_laporan');
+        $this->db->delete('tb_detail_laporan');
         $this->db->where('id_laporan',$id);
-        $query = $this->db->delete('tb_laporan');
+        $this->db->delete('tb_laporan');
     }
 }

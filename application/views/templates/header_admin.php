@@ -90,7 +90,7 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image text-center">
-          <img src="<?php echo base_url() ?>assets/images/icons/icon-user.png" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo $this->session->user->foto_profil?>" class="img-circle " alt="User Image">
           <br><a class="d-block">Admin</a>
         </div>
         <hr style ="border-top: 1px solid grey;">

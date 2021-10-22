@@ -44,15 +44,15 @@
                             </tr>
                             <tr>
                                 <th width="300px">Berat Barang</th>
-                                <td><?php echo ($record->berat) ?> Kg</td>
+                                <td><?php echo ($record->berat)?> Kg</td>
                             </tr>
                             <tr>
                                 <th width="300px">Harga per-kilogram</th>
-                                <td>Rp. <?php echo ($record->harga_per_kg) ?></td>
+                                <td><?php echo ("Rp. ".number_format($record->harga_per_kg, 0, ".", "."))?></td>
                             </tr>
                             <tr>
                                 <th width="300px">Nominal</th>
-                                <td>Rp. <?php echo ($record->nominal_pemasukan) ?></td>
+                                <td><?php echo ("Rp. ".number_format($record->nominal_pemasukan, 0, ".", "."))?></td>
                             </tr>
                             <tr>
                                 <th width="300px">Petugas Admin</th>

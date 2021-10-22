@@ -20,7 +20,6 @@ class PengeluaranController extends CI_Controller {
             }
         }
         $this->load->model("PengeluaranModel","",TRUE);
-        $this->load->model("KasModel","",TRUE);
         $this->load->model("KategoriModel","",TRUE);
     }
 
@@ -202,33 +201,6 @@ class PengeluaranController extends CI_Controller {
             }
             return $id_pengeluaran = $this->PengeluaranModel->get_newid($auto_id,'PK-');
         } 
-    }
-
-    public function addtoKas()
-	{     
-        if($this->input->post("kategori_pengeluaran") == "Pembelian Bahan Baku")
-        {
-            $harga = $this->input->post("harga_per_kg");
-            $berat = $this->input->post("berat");
-            $nominal_pengeluaran = $harga * $berat;  
-        } else {
-            $nominal_pengeluaran = $this->input->post("nominal"); 
-        }
-
-        //menghitung saldo
-        $last_saldo = $this->KasModel->get_lastSaldo()->result();
-        if($last_saldo > 0) {
-            foreach ($last_saldo as $key) {
-                $new_saldo = $key->saldo - $nominal_pengeluaran;
-            }
-        }   
-
-		$dataKas = array(
-            "id_pengeluaran" => $this->input->post("id_pengeluaran"),
-            "nominal_pengeluaran" => $nominal_pengeluaran,
-            "saldo" => $new_saldo
-        );
-        $this->KasModel->insert_Kas($dataKas);
     }
 
     public function processDelete($id){

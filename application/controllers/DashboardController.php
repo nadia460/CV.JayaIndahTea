@@ -21,7 +21,6 @@ class DashboardController extends CI_Controller {
         }
         $this->load->model("PemasukanModel","",TRUE);
         $this->load->model("PengeluaranModel","",TRUE);
-        $this->load->model("KasModel","",TRUE);
     }
 
 	function index()
@@ -29,21 +28,9 @@ class DashboardController extends CI_Controller {
         $data['Total_Pemasukan'] = $this->get_countPemasukan();
         $data['Total_Pengeluaran'] = $this->get_countPengeluaran();
         $data['Keuntungan'] = $this->get_Keuntungan();
-        $data['Jumlah_Saldo'] = $this->get_lastSaldo();
+
         $this->load->view('dashboard', $data);
         $this->load->view('templates/footer'); 
-    }
-    
-    function get_lastSaldo(){
-        $get_saldo = $this->KasModel->get_lastSaldo()->result();
-        if($get_saldo == NULL) { 
-            $last_saldo = 0;  
-        } else{
-           foreach ($get_saldo as $key) {
-                $last_saldo = $key->saldo;
-            }
-        }
-        return $last_saldo;
     }
 
     function get_countPemasukan(){

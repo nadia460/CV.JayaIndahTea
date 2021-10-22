@@ -26,12 +26,6 @@ class LoginController extends CI_Controller{
         }
     }
 
-    /** Method untuk memanggil tampilan view Login */
-    function login()
-    {
-        $this->load->view("users/login");
-    }
-
     protected function setValidationRules()
 	{
 		$this->form_validation->set_rules('name', 'Nama', 'trim|required|max_length[128]');
@@ -46,10 +40,11 @@ class LoginController extends CI_Controller{
 
     public function ProsesLogin()
     {  
-        if($this->UsersModel->login()->row())
+        $email = $this->input->post('email');
+        $password = ($this->input->post('password'));
+        if($this->UsersModel->attemptLogin($email,$password))
         {           
-            $email = $this->input->post('email');
-            $password = ($this->input->post('password'));
+            
             $user = $this->UsersModel->attemptLogin($email,$password);
             //Set user session
             $this->setUserSession($user);

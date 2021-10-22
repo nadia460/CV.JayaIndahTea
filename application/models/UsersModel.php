@@ -15,15 +15,6 @@ class UsersModel extends CI_Model {
         return $result;     
     }
 
-
-    function login(){
-        $email = $this->input->post("email");
-        $password = $this->input->post("password");
-        $this->db->where("email",$email);
-        $this->db->where("password",$password);
-        return $this->db->get("tb_users");
-    }
-
     function get_Users(){
         return $this->db->get("tb_users");
     }
@@ -46,8 +37,6 @@ class UsersModel extends CI_Model {
         $result = $query->row();
         return $result;     
     }
-
-    
 
     function get_idmax(){
         $this->db->select_max("id_users");

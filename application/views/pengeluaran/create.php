@@ -75,14 +75,14 @@
                                 <div class="form-group row <?php echo (form_error('berat')) ? ' has-error' : ''; ?>">
                                     <label for="inputBeratBarang" class="col-sm-2 col-form-label">Berat Barang</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" name='berat' placeholder="30.2 (per-kg)">
+                                    <input type="text" class="form-control" name='berat' placeholder="berat dalam kilogram. Misalnya: 30.2">
                                     <?php echo form_error('berat', '<span class="help-block">', '</span>') ?>
                                     </div> 
                                 </div>
                                 <div class="form-group row <?php echo (form_error('harga_per_kg')) ? ' has-error' : ''; ?>">
                                     <label for="inputHargaPerKG" class="col-sm-2 col-form-label">Harga Per-kilogram</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" name='harga_per_kg' placeholder="17000">
+                                    <input type="text" class="form-control" name='harga_per_kg' placeholder="harga per-kilogram">
                                     <?php echo form_error('harga_per_kg', '<span class="help-block">', '</span>') ?>
                                     </div> 
                                 </div>
@@ -102,7 +102,7 @@
                                 <div class="form-group row <?php echo (form_error('nominal')) ? ' has-error' : ''; ?>">
                                     <label for="inputNominal" class="col-sm-2 col-form-label">Nominal</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" name='nominal' placeholder="17000">
+                                    <input type="text" class="form-control" name='nominal' placeholder="nominal">
                                     <?php echo form_error('nominal', '<span class="help-block">', '</span>') ?>
                                     </div> 
                                 </div>
@@ -134,11 +134,13 @@
                                     }    
                                 else if (selectedOption == "Pembelian Bahan Baku")
                                 {
+                                   
                                     $('#form2').css('display','none');
                                     $('#form1').css('display','block')
                                 }
                                 else if(selectedOption != "Pembelian Bahan Baku")
                                 {
+                                    
                                     $('#form1').css('display','none');
                                     $('#form2').css('display','block')  
                                 }

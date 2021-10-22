@@ -23,14 +23,12 @@ class PegawaiController extends CI_Controller{
                 $this->load->view('templates/header_directur');
             }
         }
-        $this->load->model("UsersModel","",TRUE);
         $this->load->model("PegawaiModel","",TRUE);
     }
 
     function index()
     {
         $data['pegawai'] = $this->PegawaiModel->get_Pegawai();
-        //$data['users'] = $this->UsersModel->get_Users();
         $this->load->view("pegawai/main_page", $data);
         $this->load->view('templates/footer');  
     }

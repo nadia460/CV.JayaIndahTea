@@ -58,7 +58,6 @@ class UsersController extends CI_Controller{
 		}
 
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
-        $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
 	}
 
     function formCreate()
@@ -79,7 +78,7 @@ class UsersController extends CI_Controller{
             $retypepassword = $this->input->post("retypepassword");
             $email = $this->input->post('email');
             $id_pegawai = $this->input->post('identitas_pegawai');
-            $record = $this->PegawaiModel->get_NamePegawai($id_pegawai)->row();
+            $record = $this->PegawaiModel->get_PegawaiById($id_pegawai)->row();
 
             $DataUser = array(
                 "id_users" => $this->input->post("id_users"),
@@ -161,7 +160,7 @@ class UsersController extends CI_Controller{
             $retypepassword = $this->input->post("retypepassword");
             $email = $this->input->post('email');
             $id_pegawai = $this->input->post('identitas_pegawai');
-            $record = $this->PegawaiModel->get_NamePegawai($id_pegawai)->row();
+            $record = $this->PegawaiModel->get_PegawaiById($id_pegawai)->row();
 
             $DataUser = array(
                 "id_users" => $this->input->post("id_users"),

@@ -34,7 +34,7 @@
                                     
                                     <th>Kategori Pemasukan</th>
                                     <th>Keterangan</th>
-                                    <th>Nominal (Rp.)</th>
+                                    <th>Nominal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -46,7 +46,7 @@
                                     <td><?php echo $record->id_pemasukan;?></td>
                                     <td><?php echo $record->kategori_pemasukan;?></td>
                                     <td><?php echo $record->nama_produk;?><?php echo $record->keterangan;?></td>                                
-                                    <td><?php echo $record->nominal_pemasukan;?></td>                           
+                                    <td><?php echo "Rp. ".number_format($record->nominal_pemasukan, 0, ".", ".")?></td>                           
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
                                         <a href="<?php echo site_url('income/readbyid/'.$record->id_pemasukan) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -85,7 +85,7 @@
                                     
                                     <th>Kategori Pemasukan</th>
                                     <th>Keterangan</th>
-                                    <th>Nominal (Rp.)</th>
+                                    <th>Nominal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th width="300px">Nominal</th>
-                                <td>Rp. <?php echo ($record->nominal_pengeluaran) ?></td>
+                                <td><?php echo ("Rp. ".number_format($record->nominal_pengeluaran, 0, ".", "."))?></td>
                             </tr>
                             <tr>
                                 <th width="300px">Petugas Admin</th>

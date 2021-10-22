@@ -32,7 +32,7 @@
                                     <th>ID</th>
                                     <th>Kategori Pengeluaran</th>
                                     <th>Keterangan</th>
-                                    <th>Nominal (Rp.)</th>          
+                                    <th>Nominal</th>          
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,7 +44,7 @@
                                     <td><?php echo $record->id_pengeluaran;?></td>
                                     <td><?php echo $record->kategori_pengeluaran;?></td>
                                     <td><?php echo $record->nama_barang;?><?php echo $record->keterangan;?></td> 
-                                    <td><?php echo $record->nominal_pengeluaran;?></td>
+                                    <td><?php echo "Rp. ".number_format($record->nominal_pengeluaran, 0, ".", ".")?></td>
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
                                         <a href="<?php echo site_url('expenditure/readbyid/'.$record->id_pengeluaran) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -82,7 +82,7 @@
                                     <th>ID</th>
                                     <th>Kategori Pengeluaran</th>
                                     <th>Keterangan</th>
-                                    <th>Nominal (Rp.)</th>          
+                                    <th>Nominal</th>          
                                     <th>Aksi</th>
                                 </tr>
                                 </tr>

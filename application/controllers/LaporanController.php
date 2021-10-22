@@ -109,8 +109,8 @@ class LaporanController extends CI_Controller {
 
     public function readbyid($id){
         $data['laporan'] = $this->LaporanModel->get_LaporanById($id)->row();
-        $data['laporanPM'] = $this->LaporanModel->get_LaporanPemasukanById($id);
-        $data['laporanPK'] = $this->LaporanModel->get_LaporanPengeluaranById($id);
+        $data['laporanPM'] = $this->LaporanModel->get_Detail_LaporanPemasukan($id);
+        $data['laporanPK'] = $this->LaporanModel->get_Detail_LaporanPengeluaran($id);
         $get_laporan = $this->LaporanModel->get_LaporanById($id)->result();
         $lp = $this->LaporanModel->get_LaporanById($id)->row();
 
@@ -118,7 +118,7 @@ class LaporanController extends CI_Controller {
             
             if($get_laporan > 0) {
                 if($lp->penyetuju == NULL){
-                foreach ($get_laporan as $record) {
+                    foreach ($get_laporan as $record) {
                         $admin = $record->petugas_admin;
                     } 
                     $data['admin'] = $this->UsersModel->get_UsersPegawai($admin)->row();
@@ -162,7 +162,7 @@ class LaporanController extends CI_Controller {
          
     }
 
-    public function processAcc($id)
+    public function processAccepted($id)
 	{      
         $data['penyetuju'] = $this->session->user->id_pegawai;
         $this->LaporanModel->update_Laporan($id, $data);
@@ -182,24 +182,13 @@ class LaporanController extends CI_Controller {
         } 
     }
   
-    function processDelete($id)
-    {
-        $this->LaporanModel->delete_Laporan($id);
-        $this->session->set_flashdata("info", "Data Laporan Berhasil Dihapus!");
-        redirect(site_url("LaporanController"));
-    }
-
-    function readbyid_admin()
-    {
-        $this->load->view('laporan/admin/read_report');
-        $this->load->view('templates/footer'); 
-    }
+    
 
     function get_download($id)
     {
         $data['laporan'] = $this->LaporanModel->get_LaporanById($id)->row();
-        $data['laporanPM'] = $this->LaporanModel->get_LaporanPemasukanById($id);
-        $data['laporanPK'] = $this->LaporanModel->get_LaporanPengeluaranById($id);
+        $data['laporanPM'] = $this->LaporanModel->get_Detail_LaporanPemasukan($id);
+        $data['laporanPK'] = $this->LaporanModel->get_Detail_LaporanPengeluaran($id);
 
         $get_laporan = $this->LaporanModel->get_LaporanById($id)->result();
         $lp = $this->LaporanModel->get_LaporanById($id)->row();
@@ -222,5 +211,12 @@ class LaporanController extends CI_Controller {
                 $this->pdf->createPDF($html, 'Laporan Arus Kas - '.$id, false);
             }       
         }        
-    }  
+    } 
+    
+    function processDelete($id)
+    {
+        $this->LaporanModel->delete_Laporan($id);
+        $this->session->set_flashdata("info", "Data Laporan Berhasil Dihapus!");
+        redirect(site_url("LaporanController"));
+    }
 }

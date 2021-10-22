@@ -19,7 +19,6 @@ class KategoriController extends CI_Controller {
                 $this->load->view('templates/header_directur');
             }
         }
-        $this->load->model("LaporanModel","",TRUE);
         $this->load->model("KategoriModel","",TRUE);
     }
 
@@ -43,7 +42,6 @@ class KategoriController extends CI_Controller {
 
     function formCreate()
     {
-        //$data['new_id'] = $this->setIdKategoriPemasukan();
         $this->load->view('kategori/create');
         $this->load->view('templates/footer'); 
     }

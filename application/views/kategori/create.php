@@ -25,7 +25,7 @@
                         <?php $this->load->view('templates/flash'); ?>   
                         <!-- form start -->
                         <br>
-                        <?php echo form_open_multipart(site_url('category/processcreate')) ?>
+                        <?php echo form_open_multipart(site_url('KategoriController/processcreate')) ?>
                         <form class="form-horizontal" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 

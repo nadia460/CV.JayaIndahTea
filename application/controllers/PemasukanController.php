@@ -22,7 +22,6 @@ class PemasukanController extends CI_Controller {
     
         $this->load->model("PemasukanModel","",TRUE);
         $this->load->model("ProdukModel","",TRUE);
-        $this->load->model("KasModel","",TRUE);
         $this->load->model("KategoriModel","",TRUE);
     }
 
@@ -43,17 +42,17 @@ class PemasukanController extends CI_Controller {
 	{
 		if($this->input->post("kategori_pemasukan") == "Penjualan Produk")
         {  
-            $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');
-            $this->form_validation->set_rules('tujuan_kirim', 'Tujuan Kirim', 'trim|required');
-            $this->form_validation->set_rules('berat', 'Berat Barang', 'trim|required|max_length[20]');
-            $this->form_validation->set_rules('harga_per_kg', 'Nominal', 'trim|required|max_length[20]');
+            $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|max_length[50]');
+            $this->form_validation->set_rules('tujuan_kirim', 'Tujuan Kirim', 'required|max_length[50]');
+            $this->form_validation->set_rules('berat', 'Berat Barang', 'numeric|required|max_length[11]');
+            $this->form_validation->set_rules('harga_per_kg', 'Nominal', 'numeric|required|max_length[20]');
 
         } else {
 
-            $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-            $this->form_validation->set_rules('nominal', 'Nominal', 'trim|required');
+            $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|max_length[150]');
+            $this->form_validation->set_rules('nominal', 'Nominal', 'numeric|required|max_length[20]');
         }
-
+        $this->form_validation->set_message('numeric','Input %s! harus berupa angka');
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
 	}
@@ -64,8 +63,7 @@ class PemasukanController extends CI_Controller {
         $data['nama_produk'] = $this->ProdukModel->get_NameProduct();
         $data['jenis'] = $this->KategoriModel->get_KategoriPemasukan()->result();
         $this->load->view('pemasukan/create',$data);
-        $this->load->view('templates/footer'); 
-        
+        $this->load->view('templates/footer');        
     }
  
 	public function processCreate()
@@ -222,32 +220,6 @@ class PemasukanController extends CI_Controller {
         $this->pdf->createPDF($html, 'Tanda Bukti Pembayaran - '.$id, false);
     }
  
-    public function addtoKas()
-	{  
-        if($this->input->post("kategori_pemasukan") == "Penjualan Produk")
-        {
-            $harga = $this->input->post("harga_per_kg");
-            $berat = $this->input->post("berat");
-            $nominal_pemasukan = $harga * $berat;  
-        } else {
-            $nominal_pemasukan = $this->input->post("nominal"); 
-        }
-
-        //menghitung saldo
-        $last_saldo = $this->KasModel->get_lastSaldo()->result();
-        if($last_saldo > 0) {
-            foreach ($last_saldo as $key) {
-                $new_saldo = $key->saldo + $nominal_pemasukan;
-            }
-        }   
-
-		$dataKas = array(
-            "id_pemasukan" => $this->input->post("id_pemasukan"),
-            "nominal_pemasukan" => $nominal_pemasukan,
-            "saldo" => $new_saldo
-        );
-        $this->KasModel->insert_Kas($dataKas);
-    }
 
     public function processDelete($id){
         $this->PemasukanModel->delete_Pemasukan($id);

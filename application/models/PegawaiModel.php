@@ -5,12 +5,6 @@ class PegawaiModel extends CI_Model {
         return $this->db->get("tb_pegawai");
     }
 
-    function get_NamePegawai($id){
-        $this->db->where("id_pegawai",$id);
-        //$this->db->select("nama_pegawai");
-        return $this->db->get("tb_pegawai");
-    }
-
     function get_PegawaiById($id){
         $this->db->where("id_pegawai",$id);
         return $this->db->get("tb_pegawai");
@@ -51,6 +45,9 @@ class PegawaiModel extends CI_Model {
 
     function delete_Pegawai($id){
         $this->db->where('id_pegawai',$id);
-        return $this->db->delete('tb_pegawai');;
+        $this->db->delete('tb_users');
+        $this->db->where('id_pegawai',$id);
+        $this->db->delete('tb_pegawai');
+        
     } 
 }

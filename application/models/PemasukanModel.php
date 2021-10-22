@@ -52,8 +52,6 @@ class PemasukanModel extends CI_Model {
 
     function delete_Pemasukan($id){
         $this->db->where('id_pemasukan',$id);
-        $query = $this->db->delete('tb_kas');
-        $this->db->where('id_pemasukan',$id);
         $query = $this->db->delete('tb_pemasukan');
         return $query;
     }
