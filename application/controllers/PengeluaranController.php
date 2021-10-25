@@ -36,17 +36,17 @@ class PengeluaranController extends CI_Controller {
 	{
         if($this->input->post("kategori_pengeluaran") == "Pembelian Bahan Baku")
         {  
-            $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'trim|required');
-            $this->form_validation->set_rules('asal_kirim', 'asal_kirim', 'trim|required');
-            $this->form_validation->set_rules('berat', 'Berat Barang', 'trim|required|max_length[20]');
-            $this->form_validation->set_rules('harga_per_kg', 'Nominal', 'trim|required|max_length[20]');
+            $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required|max_length[50]');
+            $this->form_validation->set_rules('asal_kirim', 'asal_kirim', 'required|max_length[50]');
+            $this->form_validation->set_rules('berat', 'Berat Barang', 'numeric|required|max_length[11]');
+            $this->form_validation->set_rules('harga_per_kg', 'Nominal', 'numeric|required|max_length[20]');
 
         } else {
             
-            $this->form_validation->set_rules('keterangan', 'Keterangan', 'trim|required');
-            $this->form_validation->set_rules('nominal', 'Nominal', 'trim|required');
+            $this->form_validation->set_rules('keterangan', 'Keterangan', 'required|max_length[150]');
+            $this->form_validation->set_rules('nominal', 'Nominal', 'numeric|required|max_length[20]');
         }
-
+        $this->form_validation->set_message('numeric','Input %s! harus berupa angka');
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
 	}

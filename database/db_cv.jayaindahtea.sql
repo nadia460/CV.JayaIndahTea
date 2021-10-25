@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2021 at 09:24 AM
+-- Generation Time: Oct 23, 2021 at 09:09 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_detail_laporan` (
-  `id_laporan` varchar(14) DEFAULT NULL,
+  `id_laporan` varchar(14) NOT NULL,
   `kategori_pemasukan` varchar(50) DEFAULT NULL,
   `kategori_pengeluaran` varchar(50) DEFAULT NULL,
   `nominal_pemasukan` bigint(20) DEFAULT NULL,
@@ -43,26 +43,10 @@ INSERT INTO `tb_detail_laporan` (`id_laporan`, `kategori_pemasukan`, `kategori_p
 ('LP-211003-001', 'Penanaman Modal', NULL, 1000000, NULL),
 ('LP-211003-001', 'Penjualan Produk', NULL, 21930000, NULL),
 ('LP-211003-001', NULL, 'Pembelian Bahan Baku', NULL, 1350000),
-('LP-211006-001', 'Penanaman Modal', NULL, 1000000, NULL),
-('LP-211006-001', 'Penjualan Produk', NULL, 21930000, NULL),
-('LP-211006-001', NULL, 'Biaya Telepon', NULL, 300000),
-('LP-211006-001', NULL, 'Pembelian Bahan Baku', NULL, 1350000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_kas`
---
-
-CREATE TABLE `tb_kas` (
-  `id_kas` int(11) NOT NULL,
-  `tanggal` date NOT NULL DEFAULT current_timestamp(),
-  `id_pemasukan` varchar(50) DEFAULT NULL,
-  `id_pengeluaran` varchar(50) DEFAULT NULL,
-  `nominal_pemasukan` bigint(20) DEFAULT NULL,
-  `nominal_pengeluaran` bigint(20) NOT NULL,
-  `saldo` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+('LP-211023-001', 'Penanaman Modal', NULL, 1000000, NULL),
+('LP-211023-001', 'Penjualan Produk', NULL, 21930000, NULL),
+('LP-211023-001', NULL, 'Biaya Telepon', NULL, 300000),
+('LP-211023-001', NULL, 'Pembelian Bahan Baku', NULL, 1350000);
 
 -- --------------------------------------------------------
 
@@ -114,10 +98,10 @@ INSERT INTO `tb_kategori_pengeluaran` (`id_kategori`, `nama_kategori`) VALUES
 --
 
 CREATE TABLE `tb_laporan` (
-  `id_laporan` varchar(14) DEFAULT NULL,
-  `periode` varchar(50) DEFAULT NULL,
+  `id_laporan` varchar(14) NOT NULL,
+  `periode` varchar(50) NOT NULL,
   `total` bigint(20) NOT NULL,
-  `petugas_admin` varchar(50) DEFAULT NULL,
+  `petugas_admin` varchar(50) NOT NULL,
   `penyetuju` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -127,7 +111,7 @@ CREATE TABLE `tb_laporan` (
 
 INSERT INTO `tb_laporan` (`id_laporan`, `periode`, `total`, `petugas_admin`, `penyetuju`) VALUES
 ('LP-211003-001', '2021-09', 21580000, 'PG-001', 'PG-002'),
-('LP-211006-001', '2021', 21280000, 'PG-001', 'PG-002');
+('LP-211023-001', '2021', 21280000, 'PG-001', NULL);
 
 -- --------------------------------------------------------
 
@@ -161,13 +145,15 @@ INSERT INTO `tb_pegawai` (`id_pegawai`, `nama_pegawai`, `jabatan`, `alamat`, `no
 
 CREATE TABLE `tb_pemasukan` (
   `id_pemasukan` varchar(14) NOT NULL,
+  `id_kategori` varchar(9) DEFAULT NULL,
   `nama_produk` varchar(50) DEFAULT NULL,
   `kategori_pemasukan` varchar(50) NOT NULL,
   `tujuan_kirim` varchar(50) DEFAULT NULL,
-  `berat` int(11) DEFAULT NULL,
-  `harga_per_kg` bigint(20) DEFAULT NULL,
+  `berat` float DEFAULT NULL,
+  `harga_per_kg` int(11) DEFAULT NULL,
   `nominal_pemasukan` bigint(20) NOT NULL,
   `keterangan` varchar(150) DEFAULT NULL,
+  `id_users` int(11) DEFAULT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -177,10 +163,10 @@ CREATE TABLE `tb_pemasukan` (
 -- Dumping data for table `tb_pemasukan`
 --
 
-INSERT INTO `tb_pemasukan` (`id_pemasukan`, `nama_produk`, `kategori_pemasukan`, `tujuan_kirim`, `berat`, `harga_per_kg`, `nominal_pemasukan`, `keterangan`, `nama_pegawai`, `created_at`, `updated_at`) VALUES
-('PM-210921-001', 'Puder', 'Penjualan Produk', 'CV. one', 1200, 17000, 20400000, NULL, 'Nadia Dwi Puji Lestari', '2021-09-21 05:32:38', NULL),
-('PM-210921-002', 'Cunmi 1', 'Penjualan Produk', 'CV. one', 90, 17000, 1530000, NULL, 'Nadia Dwi Puji Lestari', '2021-09-21 14:39:33', NULL),
-('PM-210921-003', NULL, 'Penanaman Modal', NULL, NULL, NULL, 1000000, 'Tes', 'Nadia Dwi Puji Lestari', '2021-09-21 14:45:17', NULL);
+INSERT INTO `tb_pemasukan` (`id_pemasukan`, `id_kategori`, `nama_produk`, `kategori_pemasukan`, `tujuan_kirim`, `berat`, `harga_per_kg`, `nominal_pemasukan`, `keterangan`, `id_users`, `nama_pegawai`, `created_at`, `updated_at`) VALUES
+('PM-210921-001', NULL, 'Puder', 'Penjualan Produk', 'CV. one', 1200, 17000, 20400000, NULL, NULL, 'Nadia Dwi Puji Lestari', '2021-09-21 05:32:38', '2021-10-14 10:14:14'),
+('PM-210921-002', NULL, 'Cunmi 1', 'Penjualan Produk', 'CV. one', 90, 17000, 1530000, NULL, NULL, 'Nadia Dwi Puji Lestari', '2021-09-21 14:39:33', NULL),
+('PM-210921-003', NULL, NULL, 'Penanaman Modal', NULL, NULL, NULL, 1000000, 'Dana  Pribadi dari sdr. Muhamad Faisal', NULL, 'Nadia Dwi Puji Lestari', '2021-09-21 14:45:17', '2021-10-23 01:26:39');
 
 -- --------------------------------------------------------
 
@@ -190,13 +176,15 @@ INSERT INTO `tb_pemasukan` (`id_pemasukan`, `nama_produk`, `kategori_pemasukan`,
 
 CREATE TABLE `tb_pengeluaran` (
   `id_pengeluaran` varchar(14) NOT NULL,
+  `id_kategori` varchar(9) DEFAULT NULL,
   `kategori_pengeluaran` varchar(50) NOT NULL,
   `nama_barang` varchar(50) DEFAULT NULL,
   `asal_kirim` varchar(50) DEFAULT NULL,
-  `berat` bigint(20) DEFAULT NULL,
+  `berat` float DEFAULT NULL,
   `harga_per_kg` int(11) DEFAULT NULL,
   `nominal_pengeluaran` bigint(20) NOT NULL,
   `keterangan` varchar(150) DEFAULT NULL,
+  `id_users` int(11) DEFAULT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -206,9 +194,9 @@ CREATE TABLE `tb_pengeluaran` (
 -- Dumping data for table `tb_pengeluaran`
 --
 
-INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `kategori_pengeluaran`, `nama_barang`, `asal_kirim`, `berat`, `harga_per_kg`, `nominal_pengeluaran`, `keterangan`, `nama_pegawai`, `created_at`, `updated_at`) VALUES
-('PK-210922-001', 'Pembelian Bahan Baku', 'PEKO', 'CV. One', 90, 15000, 1350000, NULL, 'Nadia Dwi Puji Lestari', '2021-09-22 03:55:39', NULL),
-('PK-210924-001', 'Biaya Telepon', NULL, NULL, NULL, NULL, 300000, 'Pulsa 300 ribu', 'Nadia Dwi Puji Lestari', '2021-08-24 03:42:27', NULL);
+INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `id_kategori`, `kategori_pengeluaran`, `nama_barang`, `asal_kirim`, `berat`, `harga_per_kg`, `nominal_pengeluaran`, `keterangan`, `id_users`, `nama_pegawai`, `created_at`, `updated_at`) VALUES
+('PK-210922-001', NULL, 'Pembelian Bahan Baku', 'PEKO', 'CV. One', 90, 15000, 1350000, NULL, NULL, 'Nadia Dwi Puji Lestari', '2021-09-22 03:55:39', NULL),
+('PK-210924-001', NULL, 'Biaya Telepon', NULL, NULL, NULL, NULL, 300000, 'Pulsa 300 ribu', NULL, 'Nadia Dwi Puji Lestari', '2021-08-24 03:42:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -246,7 +234,7 @@ INSERT INTO `tb_produk` (`id_produk`, `nama_produk`, `foto_produk`, `created_at`
 
 CREATE TABLE `tb_users` (
   `id_users` int(11) NOT NULL,
-  `id_pegawai` varchar(7) DEFAULT NULL,
+  `id_pegawai` varchar(7) NOT NULL,
   `nama_pegawai` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -270,11 +258,28 @@ INSERT INTO `tb_users` (`id_users`, `id_pegawai`, `nama_pegawai`, `email`, `pass
 --
 
 --
--- Indexes for table `tb_kas`
+-- Indexes for table `tb_detail_laporan`
 --
-ALTER TABLE `tb_kas`
-  ADD PRIMARY KEY (`id_kas`),
-  ADD UNIQUE KEY `id_pengeluaran` (`id_pengeluaran`);
+ALTER TABLE `tb_detail_laporan`
+  ADD KEY `id_laporan` (`id_laporan`);
+
+--
+-- Indexes for table `tb_kategori_pemasukan`
+--
+ALTER TABLE `tb_kategori_pemasukan`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indexes for table `tb_kategori_pengeluaran`
+--
+ALTER TABLE `tb_kategori_pengeluaran`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indexes for table `tb_laporan`
+--
+ALTER TABLE `tb_laporan`
+  ADD PRIMARY KEY (`id_laporan`);
 
 --
 -- Indexes for table `tb_pegawai`
@@ -286,13 +291,17 @@ ALTER TABLE `tb_pegawai`
 -- Indexes for table `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
-  ADD PRIMARY KEY (`id_pemasukan`);
+  ADD PRIMARY KEY (`id_pemasukan`),
+  ADD KEY `id_kategori` (`id_kategori`),
+  ADD KEY `id_users` (`id_users`);
 
 --
 -- Indexes for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
-  ADD PRIMARY KEY (`id_pengeluaran`);
+  ADD PRIMARY KEY (`id_pengeluaran`),
+  ADD KEY `id_kategori` (`id_kategori`),
+  ADD KEY `id_users` (`id_users`);
 
 --
 -- Indexes for table `tb_produk`
@@ -313,12 +322,6 @@ ALTER TABLE `tb_users`
 --
 
 --
--- AUTO_INCREMENT for table `tb_kas`
---
-ALTER TABLE `tb_kas`
-  MODIFY `id_kas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
-
---
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
@@ -327,6 +330,26 @@ ALTER TABLE `tb_users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tb_detail_laporan`
+--
+ALTER TABLE `tb_detail_laporan`
+  ADD CONSTRAINT `tb_detail_laporan_ibfk_1` FOREIGN KEY (`id_laporan`) REFERENCES `tb_laporan` (`id_laporan`);
+
+--
+-- Constraints for table `tb_pemasukan`
+--
+ALTER TABLE `tb_pemasukan`
+  ADD CONSTRAINT `tb_pemasukan_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori_pemasukan` (`id_kategori`),
+  ADD CONSTRAINT `tb_pemasukan_ibfk_2` FOREIGN KEY (`id_users`) REFERENCES `tb_users` (`id_users`);
+
+--
+-- Constraints for table `tb_pengeluaran`
+--
+ALTER TABLE `tb_pengeluaran`
+  ADD CONSTRAINT `tb_pengeluaran_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori_pengeluaran` (`id_kategori`),
+  ADD CONSTRAINT `tb_pengeluaran_ibfk_2` FOREIGN KEY (`id_users`) REFERENCES `tb_users` (`id_users`);
 
 --
 -- Constraints for table `tb_users`

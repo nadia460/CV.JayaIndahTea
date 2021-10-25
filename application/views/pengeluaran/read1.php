@@ -44,7 +44,7 @@
                             </tr>
                             <tr>
                                 <th width="300px">Berat Barang</th>
-                                <td><?php echo number_format($record->berat, 0, ".", ".") ?> Kg</td>
+                                <td><?php echo ($record->berat)?> Kg</td>
                             </tr>
                             <tr>
                                 <th width="300px">Harga per-kilogram</th>

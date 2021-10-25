@@ -35,8 +35,8 @@ class ProdukController extends CI_Controller{
 
     protected function setValidationRules()
 	{
-		$this->form_validation->set_rules('id_produk', 'ID Produk', 'trim|required');
-		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required|max_length[50]');
+		$this->form_validation->set_rules('id_produk', 'ID Produk', 'required');
+		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|max_length[50]');
         
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');

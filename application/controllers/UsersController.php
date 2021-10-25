@@ -42,7 +42,6 @@ class UsersController extends CI_Controller{
 		$this->form_validation->set_rules('retypepassword', 'Retype Password', 'required|max_length[20]');
         $this->form_validation->set_rules('hak_akses', 'Hak Akses', 'required');
         
-
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
 	}

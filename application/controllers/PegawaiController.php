@@ -36,9 +36,10 @@ class PegawaiController extends CI_Controller{
     protected function setValidationRules()
 	{
 		$this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required|max_length[50]');
-		$this->form_validation->set_rules('no_tlp', 'No Telepon', 'required|max_length[50]');
+		$this->form_validation->set_rules('no_tlp', 'No Telepon', 'numeric|required|max_length[12]');
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|max_length[50]');
         
+        $this->form_validation->set_message('numeric','Input %s! harus berupa angka');
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
     }
@@ -105,8 +106,8 @@ class PegawaiController extends CI_Controller{
                 redirect(site_url("employees/formcreate"));
             }
         } else {
-            $data['new_id'] = $this->setIdPegawai();
-            $this->load->view('pegawai/create',$data);
+            $data['record'] = $this->PegawaiModel->get_PegawaiById($id)->row();
+            $this->load->view('pegawai/update',$data);
             $this->load->view('templates/footer'); 
         }
     }

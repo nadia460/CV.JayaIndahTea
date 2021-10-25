@@ -44,7 +44,6 @@ class LoginController extends CI_Controller{
         $password = ($this->input->post('password'));
         if($this->UsersModel->attemptLogin($email,$password))
         {           
-            
             $user = $this->UsersModel->attemptLogin($email,$password);
             //Set user session
             $this->setUserSession($user);

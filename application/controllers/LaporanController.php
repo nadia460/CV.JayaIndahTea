@@ -40,7 +40,8 @@ class LaporanController extends CI_Controller {
 
     function reportMonth()
     {
-        $this->form_validation->set_rules('periode_bulan', 'Periode Bulan', 'trim|required|max_length[7]');
+        $this->form_validation->set_rules('periode_bulan', 'Periode Bulan', 'required|max_length[7]');
+
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
 
@@ -65,7 +66,8 @@ class LaporanController extends CI_Controller {
 
     function reportYear()
     {
-        $this->form_validation->set_rules('periode_tahun', 'Periode Tahun', 'trim|required|max_length[7]');
+        $this->form_validation->set_rules('periode_tahun', 'Periode Tahun', 'required|max_length[5]');
+
         $this->form_validation->set_message('required','Kosong. Inputkan %s!');
         $this->form_validation->set_message('max_length','Nilai %s melebihi batas.');
         

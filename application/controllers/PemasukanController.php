@@ -213,11 +213,16 @@ class PemasukanController extends CI_Controller {
      */
     function get_download_byid($id)
     {
-        
-		$data['record'] = $this->PemasukanModel->get_PemasukanById($id)->row();;
-        $this->load->library('pdf');   
-        $html = $this->load->view('pemasukan/generatepdf_byid', $data, true);
-        $this->pdf->createPDF($html, 'Tanda Bukti Pembayaran - '.$id, false);
+        $this->load->library('pdf'); 
+		$record = $this->PemasukanModel->get_PemasukanById($id)->row();
+		$data['record'] = $record; 
+        if($record->kategori_pemasukan == 'Penjualan Produk'){ 
+            $html = $this->load->view('pemasukan/generatepdf_byid1', $data, true);
+            $this->pdf->createPDF($html, 'Tanda Bukti Pembayaran - '.$id, false);
+        }else{
+            $html = $this->load->view('pemasukan/generatepdf_byid2', $data, true);
+            $this->pdf->createPDF($html, 'Tanda Bukti Pembayaran - '.$id, false);
+        }   
     }
  
 

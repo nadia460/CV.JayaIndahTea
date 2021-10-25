@@ -99,7 +99,7 @@
                                 <div class="form-group row <?php echo (form_error('keterangan')) ? ' has-error' : ''; ?>">
                                     <label for="inputtujuan_kirim" class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
-                                    <textarea type="text" class="form-control" name='keterangan' placeholder="keterangan"></textarea>
+                                    <textarea type="text" class="form-control" name='keterangan' placeholder="keterangan sumber pemasukan kas"></textarea>
                                     <?php echo form_error('keterangan', '<span class="help-block">', '</span>') ?>
                                     </div>  
                                 </div>
