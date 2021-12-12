@@ -50,7 +50,11 @@ class PengeluaranModel extends CI_Model {
     }
 
     function delete_Pengeluaran($id){
-
+        $dataPK = array(
+            "id" => $id,
+            "nama_pegawai" => $this->session->user->nama_pegawai
+        );
+        $this->db->insert("tb_arsip_hapus",$dataPK);
         $this->db->where('id_pengeluaran',$id);
         $this->db->delete('tb_pengeluaran');
     }

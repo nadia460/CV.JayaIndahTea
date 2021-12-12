@@ -5,6 +5,10 @@ class LaporanModel extends CI_Model {
     function get_Laporan(){
         return $this->db->get("tb_laporan");
     }
+
+    function get_Arsip_Delete(){
+        return $this->db->get("tb_arsip_hapus");
+    }
     
     function get_LaporanPemasukan($periode){
         $this->db->like("created_at",$periode);
@@ -123,6 +127,11 @@ class LaporanModel extends CI_Model {
     }
 
     function delete_Laporan($id){
+        $dataLP = array(
+            "id" => $id,
+            "nama_pegawai" => $this->session->user->nama_pegawai
+        );
+        $this->db->insert("tb_arsip_hapus",$dataLP);
         $this->db->where('id_laporan',$id);
         $this->db->delete('tb_detail_laporan');
         $this->db->where('id_laporan',$id);

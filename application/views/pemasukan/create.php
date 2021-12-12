@@ -77,9 +77,9 @@
                                     </div>  
                                 </div>
                                 <div class="form-group row <?php echo (form_error('berat')) ? ' has-error' : ''; ?>">
-                                    <label for="inputBeratBarang" class="col-sm-2 col-form-label">Berat Barang</label>
+                                    <label for="inputBeratBarang" class="col-sm-2 col-form-label">Berat Barang (Kg)</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" name='berat' placeholder="berat dalam kilogram. Misalnya: 30.2">
+                                    <input type="text" class="form-control" name='berat' placeholder="Misalnya: 30.2 (Min 100 Kg)">
                                     <?php echo form_error('berat', '<span class="help-block">', '</span>') ?>
                                     </div> 
                                 </div>
@@ -97,9 +97,16 @@
                             </div>    
                             <div id="form2">
                                 <div class="form-group row <?php echo (form_error('keterangan')) ? ' has-error' : ''; ?>">
-                                    <label for="inputtujuan_kirim" class="col-sm-2 col-form-label">Keterangan</label>
+                                    <label for="inputsumber" class="col-sm-2 col-form-label">Sumber Pemasukan</label>
                                     <div class="col-sm-10">
-                                    <textarea type="text" class="form-control" name='keterangan' placeholder="keterangan sumber pemasukan kas"></textarea>
+                                    <input type="text" class="form-control" name='sumber' placeholder="PT. XYZ/ personal/ organisasi">
+                                    <?php echo form_error('sumber', '<span class="help-block">', '</span>') ?>
+                                    </div>  
+                                </div>
+                                <div class="form-group row <?php echo (form_error('keterangan')) ? ' has-error' : ''; ?>">
+                                    <label for="inputketerangan" class="col-sm-2 col-form-label">Keterangan</label>
+                                    <div class="col-sm-10">
+                                    <textarea type="text" class="form-control" name='keterangan' placeholder="keterangan lainnya"></textarea>
                                     <?php echo form_error('keterangan', '<span class="help-block">', '</span>') ?>
                                     </div>  
                                 </div>

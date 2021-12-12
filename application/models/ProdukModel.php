@@ -6,8 +6,13 @@ class ProdukModel extends CI_Model {
         return $this->db->get("tb_produk");
     }
 
-    function get_NameProduct(){
-        return $this->db->get("tb_produk")->result();
+    function get_NameProduct($nama_produk){
+        $this->db->select('*');
+        $this->db->from('tb_produk');
+        $this->db->where('tb_produk.nama_produk',$nama_produk);
+        $query = $this->db->get();
+        $result = $query->row();
+        return $result; 
     }
 
     function get_ProdukById($id){
@@ -51,7 +56,6 @@ class ProdukModel extends CI_Model {
 
     function delete_Produk($id){
         $this->db->where('id_produk',$id);
-        $query = $this->db->delete('tb_produk');
-        return $query;
+        $this->db->delete('tb_produk');
     }    
 }

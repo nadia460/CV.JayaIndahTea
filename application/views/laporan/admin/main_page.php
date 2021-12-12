@@ -80,7 +80,7 @@
                             <th>ID</th>
                             <th>Periode</th>
                             <th>Petugas Admin</th>
-                            <th>Penyetuju</th>     
+                            <th>Status</th>     
                             <th>Aksi</th>                                
                         </tr>
                     </thead>
@@ -92,7 +92,7 @@
                             <td><?php echo $record->id_laporan;?></td>
                             <td><?php echo $record->periode;?></td>
                             <td><?php echo $record->petugas_admin;?></td>
-                            <td><?php echo $record->penyetuju;?></td>  
+                            <td><?php if (is_null($record->penyetuju)){echo "Belum Disetujui";}else{echo "Telah Disetujui";}?></td>  
                             <td class="col-lg-2"> 
                                 <a href="<?php echo site_url('admin/report/read/'. $record->id_laporan) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
                                 <a href="<?php echo site_url('LaporanController/get_download/'. $record->id_laporan) ?>" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download"></span></a>                                      

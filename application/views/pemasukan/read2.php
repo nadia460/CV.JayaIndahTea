@@ -35,6 +35,10 @@
                                 <td><?php echo ($record->kategori_pemasukan) ?></td>
                             </tr>
                             <tr>
+                                <th width="300px">Sumber</th>
+                                <td><?php echo ($record->tujuan_kirim) ?></td>
+                            </tr>
+                            <tr>
                                 <th width="300px">Keterangan</th>
                                 <td><?php echo ($record->keterangan) ?></td>
                             </tr>

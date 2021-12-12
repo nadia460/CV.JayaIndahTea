@@ -88,8 +88,8 @@
             <p> : CV. Jaya Indah Tea </p>
             <p> : <?php echo $record->tujuan_kirim; ?></p>
             <p> : <?php echo $record->berat; ?> Kg </p>
-            <p> : Rp. <?php echo $record->harga_per_kg; ?> </p>
-            <p> : Rp. <?php echo $record->nominal_pemasukan; ?> </p>
+            <p> : <?php echo "Rp. ".number_format($record->harga_per_kg, 0, ".", ".")?></p>
+            <p> : <?php echo "Rp. ".number_format($record->nominal_pemasukan, 0, ".", ".")?></p>
         </th>
     </table> 
     <hr style ="border-top: 3px solid black;">

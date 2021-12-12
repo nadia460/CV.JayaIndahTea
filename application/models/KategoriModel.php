@@ -2,8 +2,6 @@
 
 class KategoriModel extends CI_Model {
 
-    
-
     function get_KategoriPemasukan(){
         return $this->db->get("tb_kategori_pemasukan");
     }
@@ -15,11 +13,8 @@ class KategoriModel extends CI_Model {
     function get_KategoriById($id){
         $kode_jenis = substr($id, 0,4);
         if($kode_jenis=="K-PK"){
-            $this->db->where("id_kategori",$id);
-            $query =  $this->db->get("tb_kategori_pengeluaran");
-            
+            $query =  $this->db->get("tb_kategori_pengeluaran");          
         }else{
-            $this->db->where("id_kategori",$id);
             $query =  $this->db->get("tb_kategori_pemasukan");
         }
         return $query;
@@ -37,7 +32,6 @@ class KategoriModel extends CI_Model {
         }  
         return $query;    
     }
-    
    
     function get_newid($auto_id, $prefix){
 
@@ -54,6 +48,24 @@ class KategoriModel extends CI_Model {
             $id_produk = $prefix .$tambah;
         }
         return $id_produk;
+    }
+
+    function get_NameKategori($nama_kategori){
+        if($this->input->post("kategori")=="Pemasukan Kas"){
+            $this->db->select('*');
+            $this->db->from('tb_kategori_pemasukan');
+            $this->db->where('tb_kategori_pemasukan.nama_kategori',$nama_kategori);
+            $query = $this->db->get();
+            $result = $query->row();
+            return $result;        
+        }else{
+            $this->db->select('*');
+            $this->db->from('tb_kategori_pengeluaran');
+            $this->db->where('tb_kategori_pengeluaran.nama_kategori',$nama_kategori);
+            $query = $this->db->get();
+            $result = $query->row();
+            return $result; 
+        }
     }
     
     function insert_Kategori($data){

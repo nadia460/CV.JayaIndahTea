@@ -52,24 +52,30 @@ class KategoriController extends CI_Controller {
 		$this->setValidationRules();	
 		if ($this->form_validation->run()) 
         {
-			//
-            $data = array(
-                "nama_kategori" => $this->input->post("nama_kategori")
-            );
-            $data['id_kategori'] = $this->setIdKategori();
-            if($this->KategoriModel->insert_Kategori($data)){  
-                $this->session->set_flashdata('success', 'Data Kategori berhasil ditambahkan');
-                redirect(site_url("category"));
-            }else{
-                redirect(site_url("category/formcreate"));
-            }       
+			$nama_kategori = $this->input->post("nama_kategori");
+            if($this->KategoriModel->get_NameKategori($nama_kategori))
+            {    
+                $this->session->set_flashdata("error", "Nama Kategori sudah digunakan! Silahkan inputkan nama kategori lainnya.");
+                redirect(site_url("category/formcreate")); 
+            } else {
+                $data = array(
+                    "nama_kategori" => $this->input->post("nama_kategori")
+                );
+                $data['id_kategori'] = $this->setIdKategori();
+                if($this->KategoriModel->insert_Kategori($data)){  
+                    $this->session->set_flashdata('success', 'Data Kategori berhasil ditambahkan');
+                    redirect(site_url("category"));
+                }else{
+                    redirect(site_url("category/formcreate"));
+                }   
+            }
+               
 		}else{
             
             $this->load->view('kategori/create');
             $this->load->view('templates/footer'); 
         }
     }
-
     
     function formUpdate($id)
     {
@@ -92,18 +98,25 @@ class KategoriController extends CI_Controller {
                 $this->session->set_flashdata("error", "Maaf data jenis Penjualan Produk tidak dapat diedit! Silahkan tambah data baru atau edit data lain.");
                 redirect(site_url("category"));
             }else{
-                //
-                $data = array(
-                    "id_kategori" => $this->input->post("kategori"),
-                    "nama_kategori" => $this->input->post("nama_kategori")
-                );
-                
-                if($this->KategoriModel->update_Kategori($id,$data)){  
-                    $this->session->set_flashdata('success', 'Data Kategori berhasil diedit');
-                    redirect(site_url("category"));
-                }else{
-                    redirect(site_url("category/formupdate"));
-                }       
+                //Mengecek Apakah nama sudah digunakan
+                $nama_kategori = $this->input->post("nama_kategori");
+                if($this->KategoriModel->get_NameKategori($nama_kategori))
+                {    
+                    $this->session->set_flashdata("error", "Nama Kategori sudah digunakan! Silahkan inputkan nama kategori lainnya.");
+                    redirect(site_url("category/formcreate")); 
+                } else {
+                    $data = array(
+                        "id_kategori" => $this->input->post("kategori"),
+                        "nama_kategori" => $this->input->post("nama_kategori")
+                    );
+                    
+                    if($this->KategoriModel->update_Kategori($id,$data)){  
+                        $this->session->set_flashdata('success', 'Data Kategori berhasil diedit');
+                        redirect(site_url("category"));
+                    }else{
+                        redirect(site_url("category/formupdate"));
+                    }    
+                }   
             } 
             
 		}else{

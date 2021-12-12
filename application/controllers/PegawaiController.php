@@ -18,9 +18,10 @@ class PegawaiController extends CI_Controller{
         }else{
             if ($this->session->user->hak_akses == "Admin"){
                 $this->load->view('templates/header_admin');
-            }
-            else{
+            }elseif ($this->session->user->hak_akses == "Direktur"){
                 $this->load->view('templates/header_directur');
+            }else{
+                $this->load->view('templates/header_asisten_pabrik');
             }
         }
         $this->load->model("PegawaiModel","",TRUE);

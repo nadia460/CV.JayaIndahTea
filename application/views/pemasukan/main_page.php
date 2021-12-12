@@ -30,11 +30,10 @@
                         <table id="myTable" class="display table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    
+                                    <th>ID</th>   
                                     <th>Kategori Pemasukan</th>
-                                    <th>Keterangan</th>
                                     <th>Nominal</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,9 +43,9 @@
                                 <tr>
                                     <!-- Memanggil Value pada Tabel Users -->
                                     <td><?php echo $record->id_pemasukan;?></td>
-                                    <td><?php echo $record->kategori_pemasukan;?></td>
-                                    <td><?php echo $record->nama_produk;?><?php echo $record->keterangan;?></td>                                
-                                    <td><?php echo "Rp. ".number_format($record->nominal_pemasukan, 0, ".", ".")?></td>                           
+                                    <td><?php echo $record->kategori_pemasukan;?></td>                            
+                                    <td><?php echo "Rp. ".number_format($record->nominal_pemasukan, 0, ".", ".")?></td>
+                                    <td><?php echo $record->created_at;?></td>                            
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
                                         <a href="<?php echo site_url('income/readbyid/'.$record->id_pemasukan) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -81,11 +80,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
-                                    
+                                    <th>ID</th>   
                                     <th>Kategori Pemasukan</th>
-                                    <th>Keterangan</th>
                                     <th>Nominal</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

@@ -65,7 +65,7 @@
                         <a href="<?php echo site_url('admin/report');?>" class="btn btn-default">
                             <span class="fa fa-home"></span> &nbsp; Kembali 
                         </a> &nbsp;
-                        <a href="<?php echo site_url('LaporanController/processAcc/'.$laporan->id_laporan);?>" class="btn btn-success" disabled>
+                        <a href="#" class="btn btn-success" disabled>
                             <span class="fa fa-check-square-o"></span> &nbsp; Setujui 
                         </a> &nbsp;
      

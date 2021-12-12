@@ -49,6 +49,13 @@
                         
                             <div id="form1">
                                 <div class="form-group row <?php echo (form_error('keterangan')) ? ' has-error' : ''; ?>">
+                                    <label for="inputsumber" class="col-sm-2 col-form-label">Sumber Pemasukan</label>
+                                    <div class="col-sm-10">
+                                    <input type="text" class="form-control" name='sumber' value="<?php echo $record->tujuan_kirim; ?>">
+                                    <?php echo form_error('sumber', '<span class="help-block">', '</span>') ?>
+                                    </div>  
+                                </div>
+                                <div class="form-group row <?php echo (form_error('keterangan')) ? ' has-error' : ''; ?>">
                                     <label for="inputtujuan_kirim" class="col-sm-2 col-form-label">Keterangan</label>
                                     <div class="col-sm-10">
                                     <textarea type="text" class="form-control" name='keterangan' value="<?php echo $record->keterangan; ?>"><?php echo $record->keterangan; ?></textarea>

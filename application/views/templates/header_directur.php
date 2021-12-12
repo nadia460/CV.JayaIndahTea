@@ -101,21 +101,6 @@
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "products")? " active": ""; ?>">
-                    <a href="<?php echo site_url('products'); ?>">
-                        <i class="fa fa-cube"></i> <span>Produk</span>
-                    </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(1) == "employees")? " active": ""; ?>">
-                    <a href="<?php echo site_url('employees'); ?>">
-                        <i class="fa fa-group"></i> <span>Pegawai</span>
-                    </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(1) == "users")? " active": ""; ?>">
-                    <a href="<?php echo site_url('users'); ?>">
-                        <i class="fa fa-user"></i> <span>Akun Users</span>
-                    </a>
-                </li>
                 <li class="<?php echo ($this->uri->segment(2) == "report")? " active": ""; ?>">
                     <a href="<?php echo site_url('director/report'); ?>">
                         <i class="fa fa-book"></i> <span>Laporan</span>

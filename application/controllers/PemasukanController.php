@@ -60,7 +60,7 @@ class PemasukanController extends CI_Controller {
     function formCreate()
     {
         $data['new_id'] = $this->setIdPemasukan();
-        $data['nama_produk'] = $this->ProdukModel->get_NameProduct();
+        $data['nama_produk'] = $this->ProdukModel->get_Product()->result();
         $data['jenis'] = $this->KategoriModel->get_KategoriPemasukan()->result();
         $this->load->view('pemasukan/create',$data);
         $this->load->view('templates/footer');        
@@ -76,21 +76,29 @@ class PemasukanController extends CI_Controller {
                 $harga = $this->input->post("harga_per_kg");
                 $berat = $this->input->post("berat");
                 $nominal_pemasukan = $harga * $berat;
+
+                if($berat < 100){
+                    $this->session->set_flashdata('error', ' Berat barang kuarang dari batas minimum 10 kg! Inputkan Kembali');
+                    redirect(site_url("income/formcreate"));
+                }else{
+                    $dataPM = array(
+                        "id_pemasukan" => $this->input->post("id_pemasukan"),
+                        "nama_produk" => $this->input->post("nama_produk"),
+                        "tujuan_kirim" => $this->input->post("tujuan_kirim"),
+                        "kategori_pemasukan" => $this->input->post("kategori_pemasukan"),
+                        "berat" => $this->input->post("berat"),
+                        "harga_per_kg" => $this->input->post("harga_per_kg"),
+                        "nominal_pemasukan" => $nominal_pemasukan,
+                        "nama_pegawai" => $this->session->user->nama_pegawai
+                    );   
+                }
     
-                $dataPM = array(
-                    "id_pemasukan" => $this->input->post("id_pemasukan"),
-                    "nama_produk" => $this->input->post("nama_produk"),
-                    "tujuan_kirim" => $this->input->post("tujuan_kirim"),
-                    "kategori_pemasukan" => $this->input->post("kategori_pemasukan"),
-                    "berat" => $this->input->post("berat"),
-                    "harga_per_kg" => $this->input->post("harga_per_kg"),
-                    "nominal_pemasukan" => $nominal_pemasukan,
-                    "nama_pegawai" => $this->session->user->nama_pegawai
-                );   
+                
             } else {
                 $dataPM = array(
                     "id_pemasukan" => $this->input->post("id_pemasukan"),
                     "keterangan" => $this->input->post("keterangan"),
+                    "tujuan_kirim" => $this->input->post("sumber"),
                     "kategori_pemasukan" => $this->input->post("kategori_pemasukan"),
                     "nominal_pemasukan" => $this->input->post("nominal"),
                     "nama_pegawai" => $this->session->user->nama_pegawai
@@ -109,7 +117,7 @@ class PemasukanController extends CI_Controller {
             }
 		}else{
             $data['new_id'] = $this->setIdPemasukan();
-            $data['nama_produk'] = $this->ProdukModel->get_NameProduct();
+            $data['nama_produk'] = $this->ProdukModel->get_NameProduct()->result();
             $data['jenis'] = $this->KategoriModel->get_KategoriPemasukan()->result();
             $this->load->view('pemasukan/create',$data);
             $this->load->view('templates/footer'); 
@@ -118,7 +126,7 @@ class PemasukanController extends CI_Controller {
 
     public function formUpdate($id){
         $record = $this->PemasukanModel->get_PemasukanById($id)->row();
-        $data['nama_produk'] = $this->ProdukModel->get_NameProduct();
+        $data['nama_produk'] = $this->ProdukModel->get_Product()->result();
         $data['record'] = $record;
         if($record->kategori_pemasukan == "Penjualan Produk"){
             $this->load->view('pemasukan/update1',$data);
@@ -133,23 +141,27 @@ class PemasukanController extends CI_Controller {
 	{   
 		$this->setValidationRules();	
 		if ($this->form_validation->run()) {
-			//Form validation success. Insert Record into database
-            
+			//Form validation success. Insert Record into database 
             if($this->input->post("kategori_pemasukan") == "Penjualan Produk"){
                 $harga = $this->input->post("harga_per_kg");
                 $berat = $this->input->post("berat");
                 $nominal_pemasukan = $harga * $berat;
     
-                $dataPM = array(
-                    "id_pemasukan" => $this->input->post("id_pemasukan"),
-                    "nama_produk" => $this->input->post("nama_produk"),
-                    "tujuan_kirim" => $this->input->post("tujuan_kirim"),
-                    "kategori_pemasukan" => $this->input->post("kategori_pemasukan"),
-                    "berat" => $this->input->post("berat"),
-                    "harga_per_kg" => $this->input->post("harga_per_kg"),
-                    "nominal_pemasukan" => $nominal_pemasukan,
-                    "nama_pegawai" => $this->session->user->nama_pegawai
-                );   
+                if($berat < 100){
+                    $this->session->set_flashdata('error', ' Berat barang kuarang dari batas minimum 10 kg! Inputkan Kembali');
+                    redirect(site_url("income/formupdate"));
+                }else{
+                    $dataPM = array(
+                        "id_pemasukan" => $this->input->post("id_pemasukan"),
+                        "nama_produk" => $this->input->post("nama_produk"),
+                        "tujuan_kirim" => $this->input->post("tujuan_kirim"),
+                        "kategori_pemasukan" => $this->input->post("kategori_pemasukan"),
+                        "berat" => $this->input->post("berat"),
+                        "harga_per_kg" => $this->input->post("harga_per_kg"),
+                        "nominal_pemasukan" => $nominal_pemasukan,
+                        "nama_pegawai" => $this->session->user->nama_pegawai
+                    );  
+                } 
             } else {
                 $dataPM = array(
                     "id_pemasukan" => $this->input->post("id_pemasukan"),
@@ -163,8 +175,6 @@ class PemasukanController extends CI_Controller {
 			$dataPM['updated_at'] = date('Y-m-d H:i:s');
             if($this->PemasukanModel->update_Pemasukan($id,$dataPM))
             {  
-                //$this->KasModel->delete_Kas($id);
-                //$this->addtoKas();
                 $this->session->set_flashdata('success', 'Data Pemasukan berhasil diedit');
                 redirect(site_url("income"));
             }else{

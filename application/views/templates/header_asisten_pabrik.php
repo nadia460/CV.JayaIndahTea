@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CV. Jaya Indah Tea | Admin</title>
+    <title>CV. Jaya Indah Tea | Direktur</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <!-- Bootstrap 3.3.7 -->
@@ -26,6 +26,7 @@
     <script src="<?php echo base_url('assets/libs/jquery/js/jquery-3.4.1.min.js');?>"></script>
     <script src="<?php echo base_url('assets/libs/jquery/js/jquery.dataTables.min.js');?>"></script>
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url() ?>assets/libs/jquery/css/jquery.dataTables.min.css">
+
 
 </head>
 <body class="hold-transition skin-black sidebar-mini">
@@ -88,10 +89,11 @@
 
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image text-center">
-          <img src="<?php echo $this->session->user->foto_profil?>" class="img-circle " alt="User Image">
-          <br><a class="d-block">Admin</a>
+          <img src="<?php echo $this->session->user->foto_profil?>" class="img-circle" alt="User Image">
+          <br><a class="d-block">Asisten Pabrik</a>
         </div>
         <hr style ="border-top: 1px solid grey;">
+
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="<?php echo ($this->uri->segment(1) == "dashboard")? " active": ""; ?>">
@@ -99,27 +101,21 @@
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "category")? " active": ""; ?>">
-                    <a href="<?php echo site_url('category'); ?>">
-                        <i class="fa fa-tasks"></i> <span>Ketegori</span>
+                <li class="<?php echo ($this->uri->segment(1) == "products")? " active": ""; ?>">
+                    <a href="<?php echo site_url('products'); ?>">
+                        <i class="fa fa-cube"></i> <span>Produk</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "income")? " active": ""; ?>">
-                    <a href="<?php echo site_url('income'); ?>">
-                        <i class="fa fa-industry"></i> <span>Pemasukan Kas</span>
+                <li class="<?php echo ($this->uri->segment(1) == "employees")? " active": ""; ?>">
+                    <a href="<?php echo site_url('employees'); ?>">
+                        <i class="fa fa-group"></i> <span>Pegawai</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(1) == "expenditure")? " active": ""; ?>">
-                    <a href="<?php echo site_url('expenditure'); ?>">
-                        <i class="fa fa-building"></i> <span>Pengeluaran Kas</span>
+                <li class="<?php echo ($this->uri->segment(1) == "users")? " active": ""; ?>">
+                    <a href="<?php echo site_url('users'); ?>">
+                        <i class="fa fa-user"></i> <span>Akun Users</span>
                     </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(2) == "report")? " active": ""; ?>">
-                    <a href="<?php echo site_url('admin/report'); ?>">
-                        <i class="fa fa-book"></i> <span>Laporan</span>
-                    </a>
-                </li>
-                
+                </li>             
             </ul>
         </section>
         <!-- /.sidebar -->

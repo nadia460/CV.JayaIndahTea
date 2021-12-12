@@ -95,6 +95,7 @@
                                     <label for="inputretypepassword" class="col-sm-2 col-form-label">Hak Akses</label>
                                     <div class="col-sm-9">
                                     <input type="radio" class="form-control-radio" name='hak_akses' value="Admin" <?php echo ($record->hak_akses == "Admin")?'checked':'' ?>> Admin &nbsp;
+                                    <input type="radio" class="form-control-radio" name='hak_akses' value="Asisten Pabrik" <?php echo ($record->hak_akses == "Asisten Pabrik")?'checked':'' ?>> Asisten Pabrik &nbsp;
                                     <input type="radio" class="form-control-radio" name='hak_akses' value="Direktur" <?php echo ($record->hak_akses == "Direktur")?'checked':'' ?>>  Direktur
                                     <?php echo form_error('hak_akses', '<span class="help-block">', '</span>') ?>
                                     </div>  

@@ -45,7 +45,7 @@
                                 <div class="form-group row <?php echo (form_error('nama_kategori')) ? ' has-error' : ''; ?>">
                                     <label for="inputNamaJenis" class="col-sm-2 col-form-label">Nama Kategori</label>
                                     <div class="col-sm-10">
-                                    <input type="text" class="form-control" name='nama_kategori' placeholder="Biaya .....">
+                                    <input type="text" class="form-control" name='nama_kategori' placeholder="nama pengeluaran atau pemasukan">
                                     <?php echo form_error('nama_kategori', '<span class="help-block">', '</span>') ?>
                                     </div> 
                                 </div>

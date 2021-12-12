@@ -51,9 +51,13 @@ class PemasukanModel extends CI_Model {
     }
 
     function delete_Pemasukan($id){
+        $dataPM = array(
+            "id" => $id,
+            "nama_pegawai" => $this->session->user->nama_pegawai
+        );
+        $this->db->insert("tb_arsip_hapus",$dataPM);
         $this->db->where('id_pemasukan',$id);
-        $query = $this->db->delete('tb_pemasukan');
-        return $query;
+        $this->db->delete('tb_pemasukan');
     }
 
     public function count_Pemasukan(){

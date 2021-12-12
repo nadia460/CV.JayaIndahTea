@@ -31,8 +31,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Kategori Pengeluaran</th>
-                                    <th>Keterangan</th>
-                                    <th>Nominal</th>          
+                                    <th>Nominal</th>
+                                    <th>Tanggal</th>          
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -42,9 +42,9 @@
                                 <tr>
                                     <!-- Memanggil Value pada Tabel Users -->
                                     <td><?php echo $record->id_pengeluaran;?></td>
-                                    <td><?php echo $record->kategori_pengeluaran;?></td>
-                                    <td><?php echo $record->nama_barang;?><?php echo $record->keterangan;?></td> 
+                                    <td><?php echo $record->kategori_pengeluaran;?></td> 
                                     <td><?php echo "Rp. ".number_format($record->nominal_pengeluaran, 0, ".", ".")?></td>
+                                    <td><?php echo $record->created_at;?></td>
                                     <td>
                                         <!-- Button Aksi (Read and Delete) -->
                                         <a href="<?php echo site_url('expenditure/readbyid/'.$record->id_pengeluaran) ?>" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-eye-open"></span></a>
@@ -81,8 +81,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Kategori Pengeluaran</th>
-                                    <th>Keterangan</th>
-                                    <th>Nominal</th>          
+                                    <th>Nominal</th>
+                                    <th>Tanggal</th>          
                                     <th>Aksi</th>
                                 </tr>
                                 </tr>

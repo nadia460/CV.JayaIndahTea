@@ -87,6 +87,7 @@
                                     <label for="inputretypepassword" class="col-sm-2 col-form-label">Hak Akses</label>
                                     <div class="col-sm-9">
                                     <input type="radio" class="form-control-radio" name='hak_akses' value="Admin" > Admin &nbsp;
+                                    <input type="radio" class="form-control-radio" name='hak_akses' value="Admin" > Asisten Pabrik &nbsp;
                                     <input type="radio" class="form-control-radio" name='hak_akses' value="Direktur">  Direktur
                                     <?php echo form_error('hak_akses', '<span class="help-block">', '</span>') ?>
                                     </div>  
